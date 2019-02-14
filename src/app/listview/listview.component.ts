@@ -57,13 +57,13 @@ export class ListviewComponent implements OnInit {
 
 
 
-  addItem(list: string, todo: string) {
+  addItem(list: string, todo: string, note: string,) {
     if (list === 'todo') {
-      this.todo.push({ title: todo, note: todo,  dateAdded: new Date().toString() });
+      this.todo.push({ title: todo, note: note,  dateAdded: new Date().toString() });
     } else if (list === 'done') {
-      this.done.push({ title: todo, note: todo, dateAdded: new Date().toString() });
+      this.done.push({ title: todo, note: note, dateAdded: new Date().toString() });
     } else {
-      this.cancelled.push({ title: todo, note: todo, dateAdded: new Date().toString() })
+      this.cancelled.push({ title: todo, note: note, dateAdded: new Date().toString() })
     }
   }
 
