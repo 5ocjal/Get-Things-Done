@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { MDBModalRef } from 'angular-bootstrap-md';
 
 @Component({
   selector: 'app-modal',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 })
 export class ModalComponent {
 
+  constructor(public modalRef: MDBModalRef) {}
 
 }

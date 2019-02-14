@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { DragDropModule } from "@angular/cdk/drag-drop";
 
 import { AppComponent } from './app.component';
@@ -16,9 +16,14 @@ import { ModalComponent } from './modal/modal.component';
   imports: [
     BrowserModule,
     DragDropModule,
-    MDBBootstrapModule,
+    MDBBootstrapModule.forRoot(),
     
   ],
+
+  schemas: [
+    NO_ERRORS_SCHEMA,
+  ],
+  entryComponents: [ModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
