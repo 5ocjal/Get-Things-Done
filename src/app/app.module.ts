@@ -5,13 +5,14 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
 import { AppComponent } from './app.component';
 import { ListviewComponent } from './listview/listview.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { ModalComponent } from './modal/modal.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ListviewComponent,
-    ModalComponent
+
   ],
   imports: [
     BrowserModule,
@@ -23,7 +24,7 @@ import { ModalComponent } from './modal/modal.component';
   schemas: [
     NO_ERRORS_SCHEMA,
   ],
-  entryComponents: [ModalComponent],
+  entryComponents: [],
   providers: [],
   bootstrap: [AppComponent]
 })

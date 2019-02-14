@@ -57,14 +57,14 @@
           <div class="card-header text-center">
             <mdb-card-text class="font-weight-bolder text-white">Zrób</mdb-card-text>
           </div>
-            <cdk-drop class="listme list-group list-group-flush" #todoList [data]="todo"
-              [connectedTo]="[doneList, cancelledList, progressList, deleteList]" (dropped)="drop($event)">
-              <div class="list-group-item list-group-item-info" *ngFor="let item of todo" cdkDrag>
-                <dt class="sm-3"> {{ item.title | titlecase }} </dt>
-                <small class="grey-text"> Pokaz szczegóły</small>
-                <small class="grey-text"> {{ item.dateAdded | date:'short' }}</small>
-              </div>
-            </cdk-drop>
+          <cdk-drop class="listme list-group list-group-flush" #todoList [data]="todo"
+            [connectedTo]="[doneList, cancelledList, progressList, deleteList]" (dropped)="drop($event)">
+            <div class="list-group-item list-group-item-info" *ngFor="let item of todo" cdkDrag>
+              <dt class="sm-3"> {{ item.title | titlecase }} </dt>
+              <small class="grey-text"> Pokaz szczegóły</small>
+              <small class="grey-text"> {{ item.dateAdded | date:'short' }}</small>
+            </div>
+          </cdk-drop>
         </div>
       </div>
 

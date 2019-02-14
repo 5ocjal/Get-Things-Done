@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../todo';
-import { ModalComponent } from '../modal/modal.component';
-import { MDBModalRef, MDBModalService } from 'angular-bootstrap-md';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -11,9 +9,8 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 })
 
 export class ListviewComponent implements OnInit {
-  modalRef: MDBModalRef;
 
-  constructor(private modalService: MDBModalService) { }
+  constructor() { }
 
   ngOnInit() {
   }
@@ -41,7 +38,6 @@ export class ListviewComponent implements OnInit {
   public delete: Todo[] = [
     { title: 'graduate Kod do Kariery', note: 'works', dateAdded: new Date().toString() },
   ];
-
 
 
   drop(event: CdkDragDrop<Todo[]>) {
@@ -75,10 +71,6 @@ export class ListviewComponent implements OnInit {
 
   clearList(list: string, todo: string) {
     this.delete.splice(0);
-  }
-
-  openModal() {
-    this.modalRef = this.modalService.show(ModalComponent)
   }
 
 
