@@ -37,8 +37,8 @@
                   </div>
                 </div>
                 <div class="col-12 text-right">
-                  <button (click)="addItem(todolist.value, todoitem.value, noteText.value)" button mdbBtn type="button" color="default"
-                    mdbWavesEffect>
+                  <button (click)="addItem(todolist.value, todoitem.value, noteText.value)" button mdbBtn type="button"
+                    color="default" mdbWavesEffect>
                     Dodaj<mdb-icon fas icon="plus-circle" class="ml-1"></mdb-icon>
                   </button>
                 </div>
@@ -57,13 +57,13 @@
           <div class="card-header text-center">
             <mdb-card-text class="font-weight-bolder text-white">Zrób</mdb-card-text>
           </div>
-          <cdk-drop class="list-group list-group-flush" #todoList [data]="todo"
-            [connectedTo]="[doneList, cancelledList, progressList, deleteList]" (dropped)="drop($event)">
-            <div class="list-group-item list-group-item-info" *ngFor="let item of todo" cdkDrag>
-              <mdb-card-text class="text-black"> {{ item.title | titlecase }} </mdb-card-text>
-              <mdb-card-text class="grey-text"> {{ item.dateAdded | date:'short' }}</mdb-card-text>
-            </div>
-          </cdk-drop>
+            <cdk-drop class="listme list-group list-group-flush" #todoList [data]="todo"
+              [connectedTo]="[doneList, cancelledList, progressList, deleteList]" (dropped)="drop($event)">
+              <div class="list-group-item list-group-item-info" *ngFor="let item of todo" cdkDrag>
+                <mdb-card-text class="text-black"> {{ item.title | titlecase }} </mdb-card-text>
+                <mdb-card-text class="grey-text"> {{ item.dateAdded | date:'short' }}</mdb-card-text>
+              </div>
+            </cdk-drop>
         </div>
       </div>
 
@@ -72,7 +72,7 @@
           <div class="card-header text-center">
             <mdb-card-text class="font-weight-bolder text-white">W trakcie</mdb-card-text>
           </div>
-          <cdk-drop class="list-group list-group-flush" #progressList [data]="progress"
+          <cdk-drop class="listme list-group list-group-flush" #progressList [data]="progress"
             [connectedTo]="[todoList, cancelledList, doneList, deleteList]" (dropped)="drop($event)">
             <div class="list-group-item list-group-item-warning" *ngFor="let item of progress" cdkDrag>
               <mdb-card-text class="text-black"> {{ item.title | titlecase }} </mdb-card-text>
@@ -88,7 +88,7 @@
           <div class="card-header text-center">
             <mdb-card-text class="font-weight-bolder text-white">Wykonane</mdb-card-text>
           </div>
-          <cdk-drop class="list-group list-group-flush" #doneList [data]="done"
+          <cdk-drop class="listme list-group list-group-flush" #doneList [data]="done"
             [connectedTo]="[todoList, cancelledList, progressList, deleteList]" (dropped)="drop($event)">
             <div class="list-group-item list-group-item-success" *ngFor="let item of done" cdkDrag>
               <mdb-card-text class="text-black"> {{ item.title | titlecase }} </mdb-card-text>
@@ -103,7 +103,7 @@
           <div class="card-header text-center">
             <mdb-card-text class="font-weight-bolder text-muted">Anulowane</mdb-card-text>
           </div>
-          <cdk-drop class="list-group list-group-flush" #cancelledList [data]="cancelled"
+          <cdk-drop class="listme list-group list-group-flush" #cancelledList [data]="cancelled"
             [connectedTo]="[todoList, progressList, doneList, deleteList]" (dropped)="drop($event)">
             <div class="list-group-item list-group-item-light" *ngFor="let item of cancelled" cdkDrag>
               <mdb-card-text class="text-muted"> {{ item.title | titlecase }} </mdb-card-text>
@@ -122,16 +122,16 @@
           <div class="card-header text-center">
             <mdb-card-text class="font-weight-bolder text-white">Usunięte</mdb-card-text>
           </div>
-          <cdk-drop class="list-group list-group-flush" #deleteList [data]="delete"
+          <cdk-drop class="listme list-group list-group-flush" #deleteList [data]="delete"
             [connectedTo]="[todoList, doneList, cancelledList, progressList]" (dropped)="drop($event)">
             <div class="list-group-item list-group-item-danger" *ngFor="let item of delete" cdkDrag>
               <mdb-card-text class="text-black"> {{ item.title | titlecase }} </mdb-card-text>
               <mdb-card-text class="grey-text"> {{ item.dateAdded | date:'short' }}</mdb-card-text>
             </div>
           </cdk-drop>
-            <button (click)="clearList()" class="btn btn-red darken-3 btn-sm btn-block btn-red darken-3">
-              Wyczyść<mdb-icon fas icon="trash-alt" class="ml-1"></mdb-icon>
-            </button>
+          <button (click)="clearList()" class="btn btn-red darken-3 btn-sm btn-block btn-red darken-3">
+            Wyczyść<mdb-icon fas icon="trash-alt" class="ml-1"></mdb-icon>
+          </button>
         </div>
       </div>
     </div>
