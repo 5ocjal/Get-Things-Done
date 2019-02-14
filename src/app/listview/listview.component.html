@@ -128,10 +128,10 @@
               <mdb-card-text class="text-black"> {{ item.title | titlecase }} </mdb-card-text>
               <mdb-card-text class="grey-text"> {{ item.dateAdded | date:'short' }}</mdb-card-text>
             </div>
+          </cdk-drop>
             <button (click)="clearList()" class="btn btn-red darken-3 btn-sm btn-block btn-red darken-3">
               Wyczyść<mdb-icon fas icon="trash-alt" class="ml-1"></mdb-icon>
             </button>
-          </cdk-drop>
         </div>
       </div>
     </div>

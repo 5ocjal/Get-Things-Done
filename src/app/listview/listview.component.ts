@@ -27,15 +27,13 @@ export class ListviewComponent implements OnInit {
   ];
 
   public progress: Todo[] = [
-    {
-      title: 'try to survive', note: 'works', dateAdded: new Date().toString()
-    }
+    {title: 'try to survive', note: 'works', dateAdded: new Date().toString()},
   ]
 
   public done: Todo[] = [
     { title: 'go to work', note: 'works', dateAdded: new Date().toString() },
-
   ];
+
   public cancelled: Todo[] = [
     { title: 'be productive', note: 'works', dateAdded: new Date().toString() },
   ];
@@ -65,11 +63,13 @@ export class ListviewComponent implements OnInit {
 
   addItem(list: string, todo: string, note: string, ) {
     if (list === 'todo') {
-      this.todo.push({ title: todo, note: note, dateAdded: new Date().toString() });
+      this.todo.push({ title: todo, note: note, dateAdded: new Date().toString()});
     } else if (list === 'done') {
-      this.done.push({ title: todo, note: note, dateAdded: new Date().toString() });
+      this.done.push({ title: todo, note: note, dateAdded: new Date().toString()});
+    } else if(list === 'progress' ){
+      this.progress.push({ title: todo, note: note, dateAdded: new Date().toString()});
     } else {
-      this.cancelled.push({ title: todo, note: note, dateAdded: new Date().toString() })
+      this.cancelled.push({ title: todo, note: note, dateAdded: new Date().toString()})
     }
   }
 
