@@ -5,7 +5,7 @@
     transition: transform 550ms cubic-bezier(0, 0, 0.2, 1);
   }
   .cdk-drag-placeholder {
-    background: rgba(237, 240, 243, 0.829);
+    background: rgba(237, 240, 243, 0.616);
   }
 
   .listme {
