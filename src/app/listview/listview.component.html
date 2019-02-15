@@ -62,10 +62,10 @@
             <div class="list-group-item list-group-item-info" *ngIf="todo.length < 1" cdkDrag>
               <p class="grey-text text-center">pusto</p>
             </div>
-            <div class="list-group-item list-group-item-info" *ngFor="let item of todo" cdkDrag>
-              <dt class="sm-3"> {{ item.title | titlecase }} </dt>
-              <small class="grey-text">Pokaz szczegóły</small>
-              <p><small> {{ item.dateAdded | date:'short' }}</small></p>
+            <div class="list-group-item list-group-item-info" *ngFor="let item of todo; let i = index " cdkDrag>
+              <dt class="sm-3"> {{ item.title | titlecase }} <i class="far fa-circle mx-2"></i></dt>
+              <small class="grey-text"> Pokaz szczegóły</small>
+              <p><small> {{ item.dateAdded | date:'dd/mm/yyyy hh:mm' }}</small></p>
             </div>
           </cdk-drop>
         </div>
@@ -82,9 +82,9 @@
                 <p class="grey-text text-center">pusto</p>
               </div>
             <div class="list-group-item list-group-item-warning" *ngFor="let item of progress" cdkDrag>
-              <dt class="sm-3"> {{ item.title | titlecase }} </dt>
+              <dt class="sm-3"> {{ item.title | titlecase }} <i class="fas fa-clock mx-2"></i></dt>
               <small class="grey-text"> Pokaz szczegóły</small>
-              <p><small> {{ item.dateAdded | date:'short' }}</small></p>
+              <p><small> {{ item.dateAdded | date:'dd/mm/yyyy hh:mm' }}</small></p>
             </div>
           </cdk-drop>
         </div>
@@ -101,9 +101,9 @@
                 <p class="grey-text text-center">pusto</p>
               </div>
             <div class="list-group-item list-group-item-success" *ngFor="let item of done" cdkDrag>
-              <dt class="sm-3"> {{ item.title | titlecase }} </dt>
+              <dt class="sm-3"> {{ item.title | titlecase }} <i class="fas fa-check-circle mx-2"></i></dt>
               <small class="grey-text"> Pokaz szczegóły</small>
-              <p><small> {{ item.dateAdded | date:'short' }}</small></p>
+              <p><small> {{ item.dateAdded | date:'dd/mm/yyyy hh:mm' }}</small></p>
             </div>
           </cdk-drop>
         </div>
@@ -120,9 +120,9 @@
                 <p class="grey-text text-center">pusto</p>
               </div>
             <div class="list-group-item list-group-item-light" *ngFor="let item of cancelled" cdkDrag>
-              <dt class="sm-3"> {{ item.title | titlecase }} </dt>
+              <dt class="sm-3"><s>{{ item.title | titlecase }} <i class="fas fa-minus-circle mx-2"></i></s></dt>
               <small class="grey-text"> Pokaz szczegóły</small>
-              <p><small> {{ item.dateAdded | date:'short' }}</small></p>
+              <p><small> {{ item.dateAdded | date:'dd/mm/yyyy hh:mm' }}</small></p>
             </div>
           </cdk-drop>
         </div>
@@ -143,9 +143,9 @@
                 <p class="grey-text text-center">pusto</p>
               </div>
             <div class="list-group-item list-group-item-danger" *ngFor="let item of delete" cdkDrag>
-              <dt class="sm-3"> {{ item.title | titlecase }} </dt>
+              <dt class="sm-3"> {{ item.title | titlecase }} <i class="fas fa-times-circle mx-2"></i> </dt>
               <small class="grey-text"> Pokaz szczegóły</small>
-              <p><small> {{ item.dateAdded | date:'short' }}</small></p>
+              <p><small> {{ item.dateAdded | date:'dd/mm/yyyy hh:mm' }}</small></p>
             </div>
           </cdk-drop>
           <button (click)="clearList()" class="btn btn-red darken-3 btn-sm btn-block btn-red darken-3">
@@ -156,3 +156,7 @@
     </div>
   </div>
 </div>
+
+
+
+

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Todo } from '../todo';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
+
 @Component({
   selector: 'app-listview',
   templateUrl: './listview.component.html',
@@ -15,8 +16,7 @@ export class ListviewComponent implements OnInit {
   ngOnInit() {
   }
 
-
-
+ll
   public todo: Todo[] = [
     { title: 'start new app', note: 'Jest dostępnych wiele różnych wersji Lorem Ipsum, ale większość zmieniła się pod wpływem dodanego humoru czy przypadkowych słów, które nawet w najmniejszym stopniu nie przypominają istniejących. Jeśli masz zamiar użyć fragmentu Lorem Ipsum, lepiej mieć pewność, że nie ma niczego „dziwnego” w środku tekstu.', dateAdded: new Date().toString() },
     { title: 'drink some tea', note: 'works', dateAdded: new Date().toString() },

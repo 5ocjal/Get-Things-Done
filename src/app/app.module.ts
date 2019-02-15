@@ -8,16 +8,20 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     ListviewComponent,
+
 
   ],
   imports: [
     BrowserModule,
     DragDropModule,
     MDBBootstrapModule.forRoot(),
+    
     
   ],
 
