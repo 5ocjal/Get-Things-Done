@@ -49,8 +49,10 @@
       </div>
     </div>
   </div>
+
   <div class="container p-4">
     <div class="row">
+
 
       <div class="col-sm-3" borderColor="border-info">
         <div class="card bg-info">
@@ -59,12 +61,15 @@
           </div>
           <cdk-drop class="listme list-group list-group-flush" #todoList [data]="todo"
             [connectedTo]="[doneList, cancelledList, progressList, deleteList]" (dropped)="drop($event)">
-            <div class="list-group-item list-group-item-info" *ngIf="todo.length < 1" cdkDrag>
+            <div class="list-group-item list-group-item-info" *ngIf="todo.length < 1" cdkDragHandle>
               <p class="grey-text text-center">pusto</p>
             </div>
-            <div class="list-group-item list-group-item-info" *ngFor="let item of todo; let i = index " cdkDrag>
-              <dt class="sm-3"> {{ item.title | titlecase }} <i class="far fa-circle mx-2"></i></dt>
-              <small class="grey-text"> Pokaz szczegóły</small>
+            <div class="list-group-item list-group-item-info" *ngFor="let item of todo; let i = index ">
+              <dt class="sm-3" cdkDrag> {{ item.title | titlecase }} <i class="far fa-circle mx-2"></i></dt>
+              <button (click)="changeModal(item)" type="button" class="btn btn-link" data-toggle="modal"
+                data-target="#openModal">
+                <small class="text-left">pokaż info</small>
+              </button>
               <p><small> {{ item.dateAdded | date:'dd/mm/yyyy hh:mm' }}</small></p>
             </div>
           </cdk-drop>
@@ -79,8 +84,8 @@
           <cdk-drop class="listme list-group list-group-flush" #progressList [data]="progress"
             [connectedTo]="[todoList, cancelledList, doneList, deleteList]" (dropped)="drop($event)">
             <div class="list-group-item list-group-item-warning" *ngIf="progress.length < 1" cdkDrag>
-                <p class="grey-text text-center">pusto</p>
-              </div>
+              <p class="grey-text text-center">pusto</p>
+            </div>
             <div class="list-group-item list-group-item-warning" *ngFor="let item of progress" cdkDrag>
               <dt class="sm-3"> {{ item.title | titlecase }} <i class="fas fa-clock mx-2"></i></dt>
               <small class="grey-text"> Pokaz szczegóły</small>
@@ -98,8 +103,8 @@
           <cdk-drop class="listme list-group list-group-flush" #doneList [data]="done"
             [connectedTo]="[todoList, cancelledList, progressList, deleteList]" (dropped)="drop($event)">
             <div class="list-group-item list-group-item-success" *ngIf="done.length < 1" cdkDrag>
-                <p class="grey-text text-center">pusto</p>
-              </div>
+              <p class="grey-text text-center">pusto</p>
+            </div>
             <div class="list-group-item list-group-item-success" *ngFor="let item of done" cdkDrag>
               <dt class="sm-3"> {{ item.title | titlecase }} <i class="fas fa-check-circle mx-2"></i></dt>
               <small class="grey-text"> Pokaz szczegóły</small>
@@ -117,8 +122,8 @@
           <cdk-drop class="listme list-group list-group-flush" #cancelledList [data]="cancelled"
             [connectedTo]="[todoList, progressList, doneList, deleteList]" (dropped)="drop($event)">
             <div class="list-group-item list-group-item-light" *ngIf="cancelled.length < 1" cdkDrag>
-                <p class="grey-text text-center">pusto</p>
-              </div>
+              <p class="grey-text text-center">pusto</p>
+            </div>
             <div class="list-group-item list-group-item-light" *ngFor="let item of cancelled" cdkDrag>
               <dt class="sm-3"><s>{{ item.title | titlecase }} <i class="fas fa-minus-circle mx-2"></i></s></dt>
               <small class="grey-text"> Pokaz szczegóły</small>
@@ -140,8 +145,8 @@
           <cdk-drop class="listme list-group list-group-flush" #deleteList [data]="delete"
             [connectedTo]="[todoList, doneList, cancelledList, progressList]" (dropped)="drop($event)">
             <div class="list-group-item list-group-item-danger" *ngIf="delete.length < 1" cdkDrag>
-                <p class="grey-text text-center">pusto</p>
-              </div>
+              <p class="grey-text text-center">pusto</p>
+            </div>
             <div class="list-group-item list-group-item-danger" *ngFor="let item of delete" cdkDrag>
               <dt class="sm-3"> {{ item.title | titlecase }} <i class="fas fa-times-circle mx-2"></i> </dt>
               <small class="grey-text"> Pokaz szczegóły</small>
@@ -155,8 +160,29 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="openModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalScrollableTitle">{{currentItem.title | titlecase}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>{{currentItem.note}}</p>
+          <p>{{currentItem.dateAdded | date:'dd/mm/yyyy hh:mm'}}</p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btn-sm" data-dismiss="modal"><i
+              class="fas fa-check-circle mx-2"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal ends -->
 </div>
-
-
-
-

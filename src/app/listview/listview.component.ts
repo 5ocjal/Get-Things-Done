@@ -11,12 +11,14 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 
 export class ListviewComponent implements OnInit {
 
+  currentItem = { title: '', note: '', dateAdded: '' };
+
   constructor() { }
 
   ngOnInit() {
   }
 
-ll
+
   public todo: Todo[] = [
     { title: 'start new app', note: 'Jest dostępnych wiele różnych wersji Lorem Ipsum, ale większość zmieniła się pod wpływem dodanego humoru czy przypadkowych słów, które nawet w najmniejszym stopniu nie przypominają istniejących. Jeśli masz zamiar użyć fragmentu Lorem Ipsum, lepiej mieć pewność, że nie ma niczego „dziwnego” w środku tekstu.', dateAdded: new Date().toString() },
     { title: 'drink some tea', note: 'works', dateAdded: new Date().toString() },
@@ -56,7 +58,11 @@ ll
       );
     }
   }
+  changeModal(item: any) {
+    this.currentItem = item;
+    console.log(this.currentItem);
 
+  }
   addItem(list: string, todo: string, note: string, ) {
     if (list === 'todo') {
       this.todo.push({ title: todo, note: note, dateAdded: new Date().toString()});
@@ -68,7 +74,9 @@ ll
       this.cancelled.push({ title: todo, note: note, dateAdded: new Date().toString()})
     }
   }
-
+  onClickMe() {
+    console.log('You are my hero!');
+  }
   clearList(list: string, todo: string) {
     this.delete.splice(0);
   }
