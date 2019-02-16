@@ -54,23 +54,22 @@
     <div class="row">
 
 
-      <div class="col-sm-3" borderColor="border-info">
+      <div class="col-sm-3">
         <div class="card bg-info">
           <div class="card-header text-center">
             <mdb-card-text class="font-weight-bolder text-white">Zrób<i class="far fa-circle mx-2"></i></mdb-card-text>
           </div>
           <cdk-drop class="listme list-group list-group-flush" #todoList [data]="todo"
             [connectedTo]="[doneList, cancelledList, progressList, deleteList]" (dropped)="drop($event)">
-            <div class="list-group-item list-group-item-info" *ngIf="todo.length < 1">
+            <div class="list-group-item list-group-item-info" borderColor="border-info" *ngIf="todo.length < 1">
               <p class="grey-text text-center">pusto</p>
             </div>
-            <div class="list-group-item list-group-item-info" *ngFor="let item of todo; let i = index ">
-              <dt class="sm-3" cdkDrag> {{ item.title | titlecase }}<i class="fas fa-expand-arrows-alt mx-4"></i></dt>
+            <div class="list-group-item" *ngFor="let item of todo; let i = index ">
+              <h6 cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
               <p (click)="changeModal(item)" data-toggle="modal" data-target="#openModal">
-                <small type="button" class="card-link">pokaż info</small>
-              </p>
+                <small type="button" class="card-link"> {{ item.note.substring(0,100) }} ... </small>
+              </p><p></p>
               <p><small> {{ item.dateAdded | date:'dd/MM/yyyy HH:mm' }}</small></p>
-            
             </div>
           </cdk-drop>
         </div>
@@ -79,7 +78,8 @@
       <div class="col-sm-3" borderColor="border-warning">
         <div class="card bg-warning">
           <div class="card-header text-center">
-            <mdb-card-text class="font-weight-bolder text-white">W trakcie<i class="far fa-clock mx-2"></i></mdb-card-text>
+            <mdb-card-text class="font-weight-bolder text-white">W trakcie<i class="far fa-clock mx-2"></i>
+            </mdb-card-text>
           </div>
           <cdk-drop class="listme list-group list-group-flush" #progressList [data]="progress"
             [connectedTo]="[todoList, cancelledList, doneList, deleteList]" (dropped)="drop($event)">
@@ -100,7 +100,8 @@
       <div class="col-sm-3" borderColor="border-success">
         <div class="card bg-success">
           <div class="card-header text-center">
-            <mdb-card-text class="font-weight-bolder text-white">Wykonane<i class="far fa-check-circle mx-2"></i></mdb-card-text>
+            <mdb-card-text class="font-weight-bolder text-white">Wykonane<i class="far fa-check-circle mx-2"></i>
+            </mdb-card-text>
           </div>
           <cdk-drop class="listme list-group list-group-flush" #doneList [data]="done"
             [connectedTo]="[todoList, cancelledList, progressList, deleteList]" (dropped)="drop($event)">
@@ -121,7 +122,8 @@
       <div class="col-sm-3" borderColor="border-light">
         <div class="card bg-light">
           <div class="card-header text-center">
-            <mdb-card-text class="font-weight-bolder text-muted">Anulowane<i class="fas fa-minus-circle mx-2"></i></mdb-card-text>
+            <mdb-card-text class="font-weight-bolder text-muted">Anulowane<i class="fas fa-minus-circle mx-2"></i>
+            </mdb-card-text>
           </div>
           <cdk-drop class="listme list-group list-group-flush" #cancelledList [data]="cancelled"
             [connectedTo]="[todoList, progressList, doneList, deleteList]" (dropped)="drop($event)">
@@ -146,7 +148,8 @@
 
         <div class="card bg red darken-3">
           <div class="card-header text-center">
-            <mdb-card-text class="font-weight-bolder text-white">Usunięte<i class="fas fa-times-circle mx-2"></i></mdb-card-text>
+            <mdb-card-text class="font-weight-bolder text-white">Usunięte<i class="fas fa-times-circle mx-2"></i>
+            </mdb-card-text>
           </div>
           <cdk-drop class="listme list-group list-group-flush" #deleteList [data]="delete"
             [connectedTo]="[todoList, doneList, cancelledList, progressList]" (dropped)="drop($event)">
