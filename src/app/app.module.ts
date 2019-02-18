@@ -5,6 +5,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
 import { AppComponent } from './app.component';
 import { ListviewComponent } from './listview/listview.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -14,6 +15,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
   declarations: [
     AppComponent,
     ListviewComponent,
+    LoginComponent,
 
 
   ],

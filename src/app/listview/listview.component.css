@@ -18,3 +18,7 @@
   .card-margin {
     margin: 3px;
   }
+  .row-height {
+    min-height: 300px;
+  }
+
