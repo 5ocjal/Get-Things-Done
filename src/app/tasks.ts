@@ -1,5 +1,5 @@
 export interface Tasks {
-    id: string;
+    id?: string;
     title: string;
     note?: string;
     dateAdded: string;

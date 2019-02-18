@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Tasks } from '../tasks';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @Component({
@@ -19,27 +20,15 @@ export class ListviewComponent implements OnInit {
   }
 
 
-  public todo: Tasks[] = [
-    { title: 'start new app', note: 'Jest dostępnych wiele różnych wersji Lorem Ipsum, ale większość zmieniła się pod wpływem dodanego humoru czy przypadkowych słów, które nawet w najmniejszym stopniu nie przypominają istniejących. Jeśli masz zamiar użyć fragmentu Lorem Ipsum, lepiej mieć pewność, że nie ma niczego „dziwnego” w środku tekstu.', dateAdded: new Date().toString() },
-    { title: 'drink some tea', note: 'works', dateAdded: new Date().toString() },
-    { title: 'do not be a lazy motherfucker', note: 'works', dateAdded: new Date().toString() },
-  ];
+  public todo: Tasks[] = [];
 
-  public progress: Tasks[] = [
-    {title: 'try to survive', note: 'works', dateAdded: new Date().toString()},
-  ]
+  public progress: Tasks[] = [];
 
-  public done: Tasks[] = [
-    { title: 'go to work', note: 'works', dateAdded: new Date().toString() },
-  ];
+  public done: Tasks[] = [];
 
-  public cancelled: Tasks[] = [
-    { title: 'be productive', note: 'works', dateAdded: new Date().toString() },
-  ];
+  public cancelled: Tasks[] = [];
 
-  public delete: Tasks[] = [
-    { title: 'graduate Kod do Kariery', note: 'works', dateAdded: new Date().toString() },
-  ];
+  public delete: Tasks[] = [];
 
 
   drop(event: CdkDragDrop<Tasks[]>) {
@@ -65,13 +54,13 @@ export class ListviewComponent implements OnInit {
   }
   addItem(list: string, todo: string, note: string, ) {
     if (list === 'todo') {
-      this.todo.push({ title: todo, note: note, dateAdded: new Date().toString()});
+      this.todo.push({ title: todo, note: note, dateAdded: new Date().toString() });
     } else if (list === 'done') {
-      this.done.push({ title: todo, note: note, dateAdded: new Date().toString()});
-    } else if(list === 'progress' ){
-      this.progress.push({ title: todo, note: note, dateAdded: new Date().toString()});
+      this.done.push({ title: todo, note: note, dateAdded: new Date().toString() });
+    } else if (list === 'progress') {
+      this.progress.push({ title: todo, note: note, dateAdded: new Date().toString() });
     } else {
-      this.cancelled.push({ title: todo, note: note, dateAdded: new Date().toString()})
+      this.cancelled.push({ title: todo, note: note, dateAdded: new Date().toString() })
     }
   }
   onClickMe() {
