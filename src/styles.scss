@@ -3,3 +3,13 @@
 
 html, body { height: 100%; }
 body { margin: 0;}
+
+#bg {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    min-width: 100%;
+    min-height: 100%;
+    mask-image: linear-gradient(rgba(209, 203, 203, 0.61));
+
+  }

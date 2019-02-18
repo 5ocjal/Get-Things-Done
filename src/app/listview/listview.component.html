@@ -4,7 +4,7 @@
     <div class="accordion" id="newNote">
       <div class="card">
         <h4 class="mb-0">
-          <button mdbBtn type="button" block="true" gradient="aqua" rounded="true" mdbWavesEffect data-toggle="collapse"
+          <button  type="button" class="btn btn-outline-info waves-effect btn-block"  data-toggle="collapse"
             data-target="#noteAdd" aria-expanded="true" aria-controls="collapseOne">
             Dodaj zadanie<mdb-icon fas icon="plus-circle" class="ml-1"></mdb-icon>
           </button>
@@ -54,35 +54,35 @@
     <div class="row">
 
 
-      <div class="col-sm-3">
-        <div class="bg-info">
-          <div class="card-header">
-            <mdb-card-text class="text-white text-center">Zrób
-              <span [ngSwitch]="todo.length >0">
-                <span *ngSwitchCase="true">
-                  <span class="badge badge-light badge-pill mx-2"> {{todo.length}}</span>
-                </span>
-                <span *ngSwitchCase="false">
-                  <span><i class="far fa-circle mx-2"></i></span>
-                </span>
-              </span>
-            </mdb-card-text>
+        <div class="col-sm-3" borderColor="border-info">
+            <div class="card bg-info">
+              <div class="card-header">
+                <mdb-card-text class="text-white text-center">Zrób
+                  <span [ngSwitch]="todo.length >0">
+                    <span *ngSwitchCase="true">
+                      <span class="badge badge-light badge-pill mx-2"> {{todo.length}}</span>
+                    </span>
+                    <span *ngSwitchCase="false">
+                      <span><i class="far fa-clock mx-2"></i></span>
+                    </span>
+                  </span>
+                </mdb-card-text>
+              </div>
+              <cdk-drop class="listme list-group card-margin" #todoList [data]="todo"
+                [connectedTo]="[progressList, doneList, cancelledList, deleteList]" (dropped)="drop($event)">
+                <div class="list-group-item list-group-item-info" *ngIf="todo.length < 1">
+                  <p class="grey-text text-center">pusto</p>
+                </div>
+                <div class="list-group-item-action list-group-item-info" *ngFor="let item of todo; let i = index ">
+                  <h6 class=" note note-info" cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
+                  <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
+                    <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
+                  </article>
+                  <p><small class="note-margin"> {{ item.dateAdded | date:'dd/MM/yyyy HH:mm' }}</small></p>
+                </div>
+              </cdk-drop>
+            </div>
           </div>
-          <cdk-drop class="listme list-group" #todoList [data]="todo"
-            [connectedTo]="[doneList, cancelledList, progressList, deleteList]" (dropped)="drop($event)">
-            <div class="list-group-item list-group-item-info" *ngIf="todo.length < 1">
-              <p class="grey-text text-center">pusto</p>
-            </div>
-            <div class="list-group-item-action list-group-item-info" *ngFor="let item of todo; let i = index ">
-              <h6 class=" note note-info" cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
-              <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
-                <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
-              </article>
-              <p><small class="note-margin"> {{ item.dateAdded | date:'dd/MM/yyyy HH:mm' }}</small></p>
-            </div>
-          </cdk-drop>
-        </div>
-      </div>
 
       <div class="col-sm-3" borderColor="border-warning">
         <div class="card bg-warning">
@@ -98,7 +98,7 @@
               </span>
             </mdb-card-text>
           </div>
-          <cdk-drop class="listme list-group" #progressList [data]="progress"
+          <cdk-drop class="listme list-group card-margin" #progressList [data]="progress"
             [connectedTo]="[todoList, doneList, cancelledList, deleteList]" (dropped)="drop($event)">
             <div class="list-group-item list-group-item-warning" *ngIf="progress.length < 1">
               <p class="grey-text text-center">pusto</p>
@@ -128,7 +128,7 @@
               </span>
             </mdb-card-text>
           </div>
-          <cdk-drop class="listme list-group" #doneList [data]="done"
+          <cdk-drop class="listme list-group card-margin" #doneList [data]="done"
             [connectedTo]="[todoList, progressList, cancelledList, deleteList]" (dropped)="drop($event)">
             <div class="list-group-item list-group-item-success" *ngIf="done.length < 1">
               <p class="grey-text text-center">pusto</p>
@@ -147,7 +147,7 @@
       <div class="col-sm-3" borderColor="border-light">
         <div class="card bg-light">
           <div class="card-header">
-            <mdb-card-text class="text-white text-center">Anulowane
+            <mdb-card-text class="dark-grey-text text-center">Anulowane
                 <span [ngSwitch]="cancelled.length >0">
                     <span *ngSwitchCase="true">
                       <span class="badge badge-light badge-pill mx-2"> {{cancelled.length}}</span>
@@ -158,7 +158,7 @@
                   </span>
                 </mdb-card-text>
           </div>
-          <cdk-drop class="listme list-group" #cancelledList [data]="cancelled"
+          <cdk-drop class="listme list-group card-margin" #cancelledList [data]="cancelled"
             [connectedTo]="[todoList, progressList, doneList, deleteList]" (dropped)="drop($event)">
             <div class="list-group-item list-group-item-light" *ngIf="cancelled.length < 1">
               <p class="grey-text text-center">pusto</p>
@@ -192,7 +192,7 @@
                   </span>
                 </mdb-card-text>
           </div>
-          <cdk-drop class="listme list-group" #deleteList [data]="delete"
+          <cdk-drop class="listme list-group card-margin" #deleteList [data]="delete"
             [connectedTo]="[todoList, progressList, doneList, canceledList]" (dropped)="drop($event)">
             <div class="list-group-item list-group-item-light" *ngIf="delete.length < 1">
               <p class="grey-text text-center">pusto</p>
