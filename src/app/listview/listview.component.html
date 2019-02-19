@@ -15,13 +15,13 @@
                 <form (ngSubmit)="onSubmit()" class="row">
                   <div class="col-6">
                     <div class="md-form">
-                      <input #taskitem type="text" id="taskitem" class="form-control" mdbInput [(ngModel)]="task.title" name="task">
+                      <input type="text" id="taskitem" class="form-control" mdbInput [(ngModel)]="task.title" name="task">
                       <label for="taskitem">Dodaj zadanie</label>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="md-form">
-                      <select #todolist class="form-control">
+                      <select class="form-control" [(ngModel)]="task.list" name="list">
                         <option selected value="todo">Do zrobienia</option>
                         <option value="progress">W trakcie</option>
                         <option value="done">Wykonane</option>
@@ -31,18 +31,13 @@
                   </div>
                   <div class="col-12">
                     <div class="md-form">
-                      <textarea #noteText class="md-textarea form-control" rows="5" id="noteText" type="text"
+                      <textarea class="md-textarea form-control" rows="5" id="noteText" type="text"
                         length="160" mdbCharCounter mdbInput [(ngModel)]="task.note" name="note"></textarea>
                       <label for="noteText">Dodaj notatkę:</label>
                     </div>
                   </div>
                   <div class="col-12 text-right">
                     <input type="submit" value="Dodaj" mdbBtn color="default">
-
-                    <!--<button (click)="addItem(todolist.value, taskitem.value, noteText.value)" button mdbBtn type="button"
-                    color="default" mdbWavesEffect>
-                    Dodaj<mdb-icon fas icon="plus-circle" class="mx-2"></mdb-icon>
-                  </button> -->
                   </div>
                 </form>
               </div>

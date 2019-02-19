@@ -3,4 +3,5 @@ export interface Tasks {
     title?: string;
     note?: string;
     dateAdded?: string;
+    list?: string;
 }

@@ -20,10 +20,9 @@ export class ListviewComponent implements OnInit {
   task: Tasks = {
     title: '',
     note: '',
-    dateAdded: '',
+    dateAdded: new Date().toString(),
+    list: '',
   }
-
-  
 
   todo: Tasks[] = [];
   progress: Tasks[] =[];
@@ -31,7 +30,6 @@ export class ListviewComponent implements OnInit {
   cancelled: Tasks[] = [];
   delete: Tasks[] = [];
 
-  
 
   ngOnInit() {
     this.taskService.getTasks().subscribe(tasks => {
