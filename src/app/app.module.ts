@@ -6,11 +6,10 @@ import { AppComponent } from './app.component';
 import { ListviewComponent } from './listview/listview.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { LoginComponent } from './login/login.component';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+import { AngularFireModule} from '@angular/fire';
+import { AngularFirestoreModule} from '@angular/fire/firestore';
+import { TasksService} from './services/tasks.service';
 
 
 
@@ -26,10 +25,10 @@ import { environment } from '../environments/environment';
     BrowserModule,
     DragDropModule,
     MDBBootstrapModule.forRoot(),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase, 'get-things-done'),
     AngularFirestoreModule,
-    AngularFireStorageModule,
+
+ 
 
   ],
 
@@ -38,7 +37,7 @@ import { environment } from '../environments/environment';
   ],
   
   entryComponents: [],
-  providers: [],
+  providers: [ TasksService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

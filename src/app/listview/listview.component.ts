@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Tasks } from '../tasks';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { TasksService } from '../services/tasks.service';
 
 
 @Component({
@@ -14,22 +14,23 @@ export class ListviewComponent implements OnInit {
 
   currentItem = { title: '', note: '', dateAdded: '' };
 
-  constructor() { }
+  constructor(private taskSrv: TasksService) { }
+
+
+  todo: Tasks[] = [];
+  progress: Tasks[] =[];
+  done: Tasks[] = [];
+  cancelled: Tasks[] = [];
+  delete: Tasks[] = [];
+
+  
 
   ngOnInit() {
+    this.taskSrv.getTasks().subscribe(tasks => {
+      console.log(tasks);
+      this.todo = tasks; 
+    });
   }
-
-
-  public todo: Tasks[] = [];
-
-  public progress: Tasks[] = [];
-
-  public done: Tasks[] = [];
-
-  public cancelled: Tasks[] = [];
-
-  public delete: Tasks[] = [];
-
 
   drop(event: CdkDragDrop<Tasks[]>) {
     if (event.previousContainer === event.container) {

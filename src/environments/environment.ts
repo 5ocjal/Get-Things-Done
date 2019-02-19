@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyCn9qbUlKgA2Cl8hxj3tnKBga6hiH3nMck",
-    authDomain: "get-things-done-v3.firebaseapp.com",
-    databaseURL: "https://get-things-done-v3.firebaseio.com",
-    projectId: "get-things-done-v3",
-    storageBucket: "get-things-done-v3.appspot.com",
-    messagingSenderId: "72843057149"
+    apiKey: "AIzaSyBjI36Q_bLAVn89pMaBoDlmc9H8NXLttuo",
+    authDomain: "get-things-done-v1-2.firebaseapp.com",
+    databaseURL: "https://get-things-done-v1-2.firebaseio.com",
+    projectId: "get-things-done-v1-2",
+    storageBucket: "",
+    messagingSenderId: "592293259761"
   }
 
 };
