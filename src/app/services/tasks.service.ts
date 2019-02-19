@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Tasks } from '../tasks';
 import { Observable } from 'rxjs/Observable';
-import { resolve } from 'dns';
+import { map } from 'rxjs/operators';
 
 
 
@@ -12,17 +12,28 @@ import { resolve } from 'dns';
 })
 export class TasksService {
 
-  tasksCollection: AngularFirestoreCollection<Tasks>
+
   tasks: Observable<Tasks[]>;
+  tasksDocument: AngularFirestoreDocument;
+  tasksCollection: AngularFirestoreCollection<Tasks>
 
   constructor(public firestore: AngularFirestore) {
-    this.tasks = this.firestore.collection('tasks').valueChanges();
+    //this.tasks = this.firestore.collection('tasks').valueChanges();
 
-   }
+    this.tasks = this.firestore.collection('tasks').snapshotChanges().pipe(map(changes => changes.map(
+      a => {
+        const data = a.payload.doc.data() as Tasks;
+        const id = a.payload.doc.id;
+        return { id, ...data }
+      }
+    )
 
-   getTasks(){
-     return this.tasks;
-   }
+    ))
+  }
+
+  getTasks() {
+    return this.tasks;
+  }
 
 
 }
