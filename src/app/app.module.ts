@@ -9,7 +9,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { LoginComponent } from './login/login.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule} from '@angular/fire';
-import { AngularFirestoreModule} from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { TasksService} from './services/tasks.service';
 
 
@@ -30,8 +30,6 @@ import { TasksService} from './services/tasks.service';
     MDBBootstrapModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase, 'get-things-done'),
     AngularFirestoreModule,
-
- 
 
   ],
 

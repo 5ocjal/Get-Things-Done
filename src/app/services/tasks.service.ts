@@ -18,7 +18,6 @@ export class TasksService {
   tasksCollection: AngularFirestoreCollection<Tasks>
 
   constructor(public firestore: AngularFirestore) {
-    //this.tasks = this.firestore.collection('tasks').valueChanges();
 
     this.tasksCollection = this.firestore.collection('tasks');
     this.tasks = this.tasksCollection.snapshotChanges().pipe(map(changes => changes.map(

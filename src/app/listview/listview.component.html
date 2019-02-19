@@ -15,7 +15,8 @@
                 <form (ngSubmit)="onSubmit()" class="row">
                   <div class="col-6">
                     <div class="md-form">
-                      <input type="text" id="taskitem" class="form-control" mdbInput [(ngModel)]="task.title" name="task">
+                      <input type="text" id="taskitem" class="form-control" mdbInput [(ngModel)]="task.title"
+                        name="task">
                       <label for="taskitem">Dodaj zadanie</label>
                     </div>
                   </div>
@@ -31,8 +32,8 @@
                   </div>
                   <div class="col-12">
                     <div class="md-form">
-                      <textarea class="md-textarea form-control" rows="5" id="noteText" type="text"
-                        length="160" mdbCharCounter mdbInput [(ngModel)]="task.note" name="note"></textarea>
+                      <textarea class="md-textarea form-control" rows="5" id="noteText" type="text" length="160"
+                        mdbCharCounter mdbInput [(ngModel)]="task.note" name="note"></textarea>
                       <label for="noteText">Dodaj notatkę:</label>
                     </div>
                   </div>
@@ -223,9 +224,12 @@
           </div>
           <div class="modal-body">
             <span class="h6 text-muted">Notatki:</span>
-            <article>{{currentTask.note}}</article>
+            <p class="text-justify text-muted">{{currentTask.note}}</p>
           </div>
           <div class="modal-footer">
+            <button class="btn btn-outline-danger btn-sm">
+              <mdb-icon far icon="trash-alt"></mdb-icon>
+            </button>
             <button type="button" class="btn btn-outline-info btn-sm" data-dismiss="modal"><i
                 class="fas fa-check-circle mx-2"></i></button>
           </div>
