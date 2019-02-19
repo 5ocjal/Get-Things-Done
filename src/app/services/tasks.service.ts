@@ -20,7 +20,8 @@ export class TasksService {
   constructor(public firestore: AngularFirestore) {
     //this.tasks = this.firestore.collection('tasks').valueChanges();
 
-    this.tasks = this.firestore.collection('tasks').snapshotChanges().pipe(map(changes => changes.map(
+    this.tasksCollection = this.firestore.collection('tasks');
+    this.tasks = this.tasksCollection.snapshotChanges().pipe(map(changes => changes.map(
       a => {
         const data = a.payload.doc.data() as Tasks;
         const id = a.payload.doc.id;
@@ -33,6 +34,10 @@ export class TasksService {
 
   getTasks() {
     return this.tasks;
+  }
+
+  addItem(task: Tasks){
+    this.tasksCollection.add(task);
   }
 
 

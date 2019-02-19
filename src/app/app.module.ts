@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { FormsModule} from '@angular/forms';
 import { DragDropModule } from "@angular/cdk/drag-drop";
 
 import { AppComponent } from './app.component';
@@ -10,6 +11,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule} from '@angular/fire';
 import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { TasksService} from './services/tasks.service';
+
 
 
 
@@ -24,6 +26,7 @@ import { TasksService} from './services/tasks.service';
   imports: [
     BrowserModule,
     DragDropModule,
+    FormsModule,
     MDBBootstrapModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase, 'get-things-done'),
     AngularFirestoreModule,

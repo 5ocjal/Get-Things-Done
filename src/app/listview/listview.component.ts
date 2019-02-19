@@ -4,6 +4,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { TasksService } from '../services/tasks.service';
 
 
+
 @Component({
   selector: 'app-listview',
   templateUrl: './listview.component.html',
@@ -12,10 +13,17 @@ import { TasksService } from '../services/tasks.service';
 
 export class ListviewComponent implements OnInit {
 
-  currentItem = { title: '', note: '', dateAdded: '' };
+  constructor(private taskService: TasksService) { }
 
-  constructor(private taskSrv: TasksService) { }
+  currentTask = { title: '', note: '', dateAdded: '' };
 
+  task: Tasks = {
+    title: '',
+    note: '',
+    dateAdded: '',
+  }
+
+  
 
   todo: Tasks[] = [];
   progress: Tasks[] =[];
@@ -26,7 +34,7 @@ export class ListviewComponent implements OnInit {
   
 
   ngOnInit() {
-    this.taskSrv.getTasks().subscribe(tasks => {
+    this.taskService.getTasks().subscribe(tasks => {
       console.log(tasks);
       this.todo = tasks; 
     });
@@ -48,25 +56,20 @@ export class ListviewComponent implements OnInit {
       );
     }
   }
-  changeModal(item: any) {
-    this.currentItem = item;
-    console.log(this.currentItem);
 
+  changeModal(item: any) {
+    this.currentTask = item;
   }
-  addItem(list: string, todo: string, note: string, ) {
-    if (list === 'todo') {
-      this.todo.push({ title: todo, note: note, dateAdded: new Date().toString() });
-    } else if (list === 'done') {
-      this.done.push({ title: todo, note: note, dateAdded: new Date().toString() });
-    } else if (list === 'progress') {
-      this.progress.push({ title: todo, note: note, dateAdded: new Date().toString() });
-    } else {
-      this.cancelled.push({ title: todo, note: note, dateAdded: new Date().toString() })
+
+  onSubmit(){
+    if (this.task.title !=''){
+      this.taskService.addItem(this.task);
+      this.task.title = '';
+      this.task.note = '';
+
     }
   }
-  onClickMe() {
-    console.log('You are my hero!');
-  }
+
   clearList(list: string, todo: string) {
     this.delete.splice(0);
   }
