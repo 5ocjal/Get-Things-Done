@@ -4,9 +4,6 @@ import { Tasks } from '../tasks';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -34,6 +31,7 @@ export class TasksService {
   getTasks() {
     return this.tasks;
   }
+
 
   addItem(task: Tasks){
     this.tasksCollection.add(task);

@@ -56,9 +56,9 @@
           <div class="card bg-info">
             <div class="card-header">
               <mdb-card-text class="text-white text-center">Zrób
-                <span [ngSwitch]="todo.length >0">
+                <span [ngSwitch]="mainList.todo.length >0">
                   <span *ngSwitchCase="true">
-                    <span class="badge badge-light badge-pill mx-2"> {{todo.length}}</span>
+                    <span class="badge badge-light badge-pill mx-2"> {{mainList.todo.length}}</span>
                   </span>
                   <span *ngSwitchCase="false">
                     <span><i class="far fa-clock mx-2"></i></span>
@@ -66,17 +66,17 @@
                 </span>
               </mdb-card-text>
             </div>
-            <cdk-drop class="listme list-group card-margin" #todoList [data]="todo"
+            <cdk-drop class="listme list-group card-margin" #todoList [data]="mainList.todo"
               [connectedTo]="[progressList, doneList, cancelledList, deleteList]" (dropped)="drop($event)">
-              <div class="list-group-item list-group-item-info" *ngIf="todo.length < 1">
+              <div class="list-group-item list-group-item-info" *ngIf="mainList.todo.length < 1">
                 <p class="grey-text text-center">pusto</p>
               </div>
               <div class="list-group-item-action list-group-item-info" *ngFor="let item of todo; let i = index ">
-                <h6 class="note note-info" cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
-                <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
-                  <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
-                </article>
-                <p><small class="note-margin"> {{ item.dateAdded | date:'dd/MM/yyyy HH:mm' }}</small></p>
+                  <h6 class="note note-info" cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
+                  <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
+                    <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
+                  </article>
+                  <p><small class="note-margin"> {{ item.dateAdded | date:'dd/MM/yyyy HH:mm' }}</small></p>
               </div>
             </cdk-drop>
           </div>
@@ -86,9 +86,9 @@
           <div class="card bg-warning">
             <div class="card-header">
               <mdb-card-text class="text-white text-center">W trakcie
-                <span [ngSwitch]="progress.length >0">
+                <span [ngSwitch]="mainList.progress.length >0">
                   <span *ngSwitchCase="true">
-                    <span class="badge badge-light badge-pill mx-2"> {{progress.length}}</span>
+                    <span class="badge badge-light badge-pill mx-2"> {{mainList.progress.length}}</span>
                   </span>
                   <span *ngSwitchCase="false">
                     <span><i class="far fa-clock mx-2"></i></span>
@@ -96,17 +96,17 @@
                 </span>
               </mdb-card-text>
             </div>
-            <cdk-drop class="listme list-group card-margin" #progressList [data]="progress"
+            <cdk-drop class="listme list-group card-margin" #progressList [data]="mainList.progress"
               [connectedTo]="[todoList, doneList, cancelledList, deleteList]" (dropped)="drop($event)">
-              <div class="list-group-item list-group-item-warning" *ngIf="progress.length < 1">
+              <div class="list-group-item list-group-item-warning" *ngIf="mainList.progress.length < 1">
                 <p class="grey-text text-center">pusto</p>
               </div>
-              <div class="list-group-item-action list-group-item-warning" *ngFor="let item of progress; let i = index ">
-                <h6 class=" note note-warning" cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
-                <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
-                  <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
-                </article>
-                <p><small class="note-margin"> {{ item.dateAdded | date:'dd/MM/yyyy HH:mm' }}</small></p>
+              <div class="list-group-item-action list-group-item-warning" *ngFor="let item of mainList.progress; let i = index ">
+                  <h6 class=" note note-warning" cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
+                  <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
+                    <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
+                  </article>
+                  <p><small class="note-margin"> {{ item.dateAdded | date:'dd/MM/yyyy HH:mm' }}</small></p>
               </div>
             </cdk-drop>
           </div>
@@ -116,9 +116,9 @@
           <div class="card bg-success">
             <div class="card-header">
               <mdb-card-text class="text-white text-center">Zrobione
-                <span [ngSwitch]="done.length >0">
+                <span [ngSwitch]="mainList.done.length >0">
                   <span *ngSwitchCase="true">
-                    <span class="badge badge-light badge-pill mx-2"> {{done.length}}</span>
+                    <span class="badge badge-light badge-pill mx-2"> {{mainList.done.length}}</span>
                   </span>
                   <span *ngSwitchCase="false">
                     <span><i class="far fa-check-circle mx-2"></i></span>
@@ -126,12 +126,12 @@
                 </span>
               </mdb-card-text>
             </div>
-            <cdk-drop class="listme list-group card-margin" #doneList [data]="done"
+            <cdk-drop class="listme list-group card-margin" #doneList [data]="mainList.done"
               [connectedTo]="[todoList, progressList, cancelledList, deleteList]" (dropped)="drop($event)">
-              <div class="list-group-item list-group-item-success" *ngIf="done.length < 1">
+              <div class="list-group-item list-group-item-success" *ngIf="mainList.done.length < 1">
                 <p class="grey-text text-center">pusto</p>
               </div>
-              <div class="list-group-item-action list-group-item-success" *ngFor="let item of done; let i = index ">
+              <div class="list-group-item-action list-group-item-success" *ngFor="let item of mainList.done; let i = index ">
                 <h6 class=" note note-success" cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
                 <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
                   <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
@@ -146,7 +146,7 @@
           <div class="card bg-light">
             <div class="card-header">
               <mdb-card-text class="dark-grey-text text-center">Anulowane
-                <span [ngSwitch]="cancelled.length >0">
+                <span [ngSwitch]="mainList.cancelled.length >0">
                   <span *ngSwitchCase="true">
                     <span class="badge badge-light badge-pill mx-2"> {{cancelled.length}}</span>
                   </span>
@@ -156,12 +156,12 @@
                 </span>
               </mdb-card-text>
             </div>
-            <cdk-drop class="listme list-group card-margin" #cancelledList [data]="cancelled"
+            <cdk-drop class="listme list-group card-margin" #cancelledList [data]="mainList.cancelled"
               [connectedTo]="[todoList, progressList, doneList, deleteList]" (dropped)="drop($event)">
-              <div class="list-group-item list-group-item-light" *ngIf="cancelled.length < 1">
+              <div class="list-group-item list-group-item-light" *ngIf="mainList.cancelled.length < 1">
                 <p class="grey-text text-center">pusto</p>
               </div>
-              <div class="list-group-item-action list-group-item-light" *ngFor="let item of cancelled; let i = index ">
+              <div class="list-group-item-action list-group-item-light" *ngFor="let item of mainList.cancelled; let i = index ">
                 <h6 class=" note note-light" cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
                 <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
                   <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
@@ -180,7 +180,7 @@
           <div class="card bg red darken-3">
             <div class="card-header">
               <mdb-card-text class="text-white text-center">Usunięte
-                <span [ngSwitch]="delete.length >0">
+                <span [ngSwitch]="mainList.delete.length >0">
                   <span *ngSwitchCase="true">
                     <span class="badge badge-light badge-pill mx-2"> {{delete.length}}</span>
                   </span>
@@ -190,12 +190,12 @@
                 </span>
               </mdb-card-text>
             </div>
-            <cdk-drop class="listme list-group card-margin" #deleteList [data]="delete"
+            <cdk-drop class="listme list-group card-margin" #deleteList [data]="mainList.delete"
               [connectedTo]="[todoList, progressList, doneList, canceledList]" (dropped)="drop($event)">
-              <div class="list-group-item list-group-item-light" *ngIf="delete.length < 1">
+              <div class="list-group-item list-group-item-light" *ngIf="mainList.delete.length < 1">
                 <p class="grey-text text-center">pusto</p>
               </div>
-              <div class="list-group-item-action list-group-item-danger" *ngFor="let item of delete; let i = index ">
+              <div class="list-group-item-action list-group-item-danger" *ngFor="let item of mainList.delete; let i = index ">
                 <h6 class=" note note-danger" cdkDrag>{{ item.title.substring(0,50) | titlecase }}</h6>
                 <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
                   <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
