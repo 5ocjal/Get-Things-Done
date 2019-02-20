@@ -40,8 +40,7 @@ export class ListviewComponent implements OnInit {
 
       console.log(task);
 
-      task.filter(item => item.list == 'progress')
-      .map( item =>  this.mainList.progress.push(item) )
+      task.filter(item => item.list == 'progress').map( item =>  this.mainList.progress.push(item) )
        
       
       console.log(this.mainList.progress)
