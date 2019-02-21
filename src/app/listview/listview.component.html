@@ -148,7 +148,7 @@
               <mdb-card-text class="dark-grey-text text-center">Anulowane
                 <span [ngSwitch]="mainList.cancelled.length >0">
                   <span *ngSwitchCase="true">
-                    <span class="badge badge-light badge-pill mx-2"> {{cancelled.length}}</span>
+                    <span class="badge badge-light badge-pill mx-2"> {{mainList.cancelled.length}}</span>
                   </span>
                   <span *ngSwitchCase="false">
                     <span><i class="fas fa-minus-circle mx-2"></i></span>
@@ -182,7 +182,7 @@
               <mdb-card-text class="text-white text-center">Usunięte
                 <span [ngSwitch]="mainList.delete.length >0">
                   <span *ngSwitchCase="true">
-                    <span class="badge badge-light badge-pill mx-2"> {{delete.length}}</span>
+                    <span class="badge badge-light badge-pill mx-2"> {{mainList.delete.length}}</span>
                   </span>
                   <span *ngSwitchCase="false">
                     <span><i class="fas fa-times-circle mx-2"></i></span>
