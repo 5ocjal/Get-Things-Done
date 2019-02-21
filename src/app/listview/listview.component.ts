@@ -4,7 +4,6 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { TasksService } from '../services/tasks.service';
 
 
-
 @Component({
   selector: 'app-listview',
   templateUrl: './listview.component.html',
@@ -15,7 +14,7 @@ export class ListviewComponent implements OnInit {
 
   constructor(private taskService: TasksService) { }
 
-  currentTask = { title: '', note: '', dateAdded: '' };
+  currentTask = { title: '', note: '', dateAdded: '',  list: ''};
 
   task: Tasks = {
     title: '',
@@ -42,12 +41,10 @@ export class ListviewComponent implements OnInit {
       task.filter(item => item.list == 'delete').map(item => this.mainList.delete.push(item));
 
     });
-
-
-
   }
 
   drop(event: CdkDragDrop<Tasks[]>) {
+    
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -58,14 +55,24 @@ export class ListviewComponent implements OnInit {
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
-        event.previousIndex,
-        event.currentIndex,
+        event.previousIndex, 
+        event.currentIndex, 
       );
+
     }
+    console.log(event.container)
+    console.log(event.container.data[0].list);
+    event.container.data[0].list = event.container.id;
+    console.log(event.container.id)
+    
   }
 
   changeModal(item: any) {
     this.currentTask = item;
+  }
+
+  changeList(item: any) {
+    this.currentTask.list = 'event.container.data';
   }
 
   onSubmit() {

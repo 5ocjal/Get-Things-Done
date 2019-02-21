@@ -37,5 +37,10 @@ export class TasksService {
     this.tasksCollection.add(task);
   }
 
+  updateItem(task: Tasks){
+    this.tasksDocument = this.firestore.doc('tasks/${item.id}');
+    this.tasksDocument.update(task);
+  }
+
 
 }

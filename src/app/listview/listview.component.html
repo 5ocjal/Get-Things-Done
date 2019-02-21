@@ -66,7 +66,7 @@
                 </span>
               </mdb-card-text>
             </div>
-            <cdk-drop class="listme list-group card-margin" #todoList [data]="mainList.todo"
+            <cdk-drop id="todo" class="listme list-group card-margin" #todoList [data]="mainList.todo"
               [connectedTo]="[progressList, doneList, cancelledList, deleteList]" (dropped)="drop($event)">
               <div class="list-group-item list-group-item-info" *ngIf="mainList.todo.length < 1">
                 <p class="grey-text text-center">pusto</p>
@@ -96,7 +96,7 @@
                 </span>
               </mdb-card-text>
             </div>
-            <cdk-drop class="listme list-group card-margin" #progressList [data]="mainList.progress"
+            <cdk-drop id="progress" class="listme list-group card-margin" #progressList [data]="mainList.progress"
               [connectedTo]="[todoList, doneList, cancelledList, deleteList]" (dropped)="drop($event)">
               <div class="list-group-item list-group-item-warning" *ngIf="mainList.progress.length < 1">
                 <p class="grey-text text-center">pusto</p>
@@ -126,7 +126,7 @@
                 </span>
               </mdb-card-text>
             </div>
-            <cdk-drop class="listme list-group card-margin" #doneList [data]="mainList.done"
+            <cdk-drop id="done" class="listme list-group card-margin" #doneList [data]="mainList.done"
               [connectedTo]="[todoList, progressList, cancelledList, deleteList]" (dropped)="drop($event)">
               <div class="list-group-item list-group-item green accent-1" *ngIf="mainList.done.length < 1">
                 <p class="grey-text text-center">pusto</p>
@@ -156,7 +156,7 @@
                 </span>
               </mdb-card-text>
             </div>
-            <cdk-drop class="listme list-group card-margin" #cancelledList [data]="mainList.cancelled"
+            <cdk-drop id="cancelled" class="listme list-group card-margin" #cancelledList [data]="mainList.cancelled"
               [connectedTo]="[todoList, progressList, doneList, deleteList]" (dropped)="drop($event)">
               <div class="list-group-item list-group-item-light" *ngIf="mainList.cancelled.length < 1">
                 <p class="grey-text text-center">pusto</p>
@@ -190,7 +190,7 @@
                 </span>
               </mdb-card-text>
             </div>
-            <cdk-drop class="listme list-group card-margin" #deleteList [data]="mainList.delete"
+            <cdk-drop id="delete" class="listme list-group card-margin" #deleteList [data]="mainList.delete"
               [connectedTo]="[todoList, progressList, doneList, canceledList]" (dropped)="drop($event)">
               <div class="list-group-item list-group-item-light" *ngIf="mainList.delete.length < 1">
                 <p class="grey-text text-center">pusto</p>
@@ -227,6 +227,9 @@
             <p class="text-justify text-muted">{{currentTask.note}}</p>
           </div>
           <div class="modal-footer">
+              <button class="btn btn-outline-warning waves-effect btn-sm">
+                  <i class="fas fa-edit"></i>
+                </button>
             <button class="btn btn-outline-danger btn-sm">
               <mdb-icon far icon="trash-alt"></mdb-icon>
             </button>

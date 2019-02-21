@@ -12,6 +12,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { TasksService } from './services/tasks.service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -22,6 +23,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     ListviewComponent,
     LoginComponent,
     NavbarComponent,
+    FooterComponent,
 
   ],
 
