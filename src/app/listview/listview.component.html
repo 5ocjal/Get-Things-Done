@@ -71,12 +71,13 @@
               <div class="list-group-item list-group-item-info" *ngIf="mainList.todo.length < 1">
                 <p class="grey-text text-center">pusto</p>
               </div>
-              <div class="list-group-item-action list-group-item-info" *ngFor="let item of mainList.todo; let i = index ">
-                  <h6 class="note note-info" cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
-                  <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
-                    <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
-                  </article>
-                  <p><small class="note-margin"> {{ item.dateAdded | date:'dd/MM/yyyy HH:mm' }}</small></p>
+              <div class="list-group-item-action list-group-item-info"
+                *ngFor="let item of mainList.todo; let i = index ">
+                <h6 class="note note-info" cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
+                <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
+                  <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
+                </article>
+                <p><small class="note-margin"> {{ item.dateAdded | date:'dd/MM/yyyy HH:mm' }}</small></p>
               </div>
             </cdk-drop>
           </div>
@@ -101,12 +102,13 @@
               <div class="list-group-item list-group-item-warning" *ngIf="mainList.progress.length < 1">
                 <p class="grey-text text-center">pusto</p>
               </div>
-              <div class="list-group-item-action list-group-item-warning" *ngFor="let item of mainList.progress; let i = index ">
-                  <h6 class=" note note-warning" cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
-                  <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
-                    <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
-                  </article>
-                  <p><small class="note-margin"> {{ item.dateAdded | date:'dd/MM/yyyy HH:mm' }}</small></p>
+              <div class="list-group-item-action list-group-item-warning"
+                *ngFor="let item of mainList.progress; let i = index ">
+                <h6 class=" note note-warning" cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
+                <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
+                  <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
+                </article>
+                <p><small class="note-margin"> {{ item.dateAdded | date:'dd/MM/yyyy HH:mm' }}</small></p>
               </div>
             </cdk-drop>
           </div>
@@ -131,7 +133,8 @@
               <div class="list-group-item list-group-item green accent-1" *ngIf="mainList.done.length < 1">
                 <p class="grey-text text-center">pusto</p>
               </div>
-              <div class="list-group-item-action list-group-item-success" *ngFor="let item of mainList.done; let i = index ">
+              <div class="list-group-item-action list-group-item-success"
+                *ngFor="let item of mainList.done; let i = index ">
                 <h6 class=" note note-success" cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
                 <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
                   <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
@@ -161,7 +164,8 @@
               <div class="list-group-item list-group-item-light" *ngIf="mainList.cancelled.length < 1">
                 <p class="grey-text text-center">pusto</p>
               </div>
-              <div class="list-group-item-action list-group-item-light" *ngFor="let item of mainList.cancelled; let i = index ">
+              <div class="list-group-item-action list-group-item-light"
+                *ngFor="let item of mainList.cancelled; let i = index ">
                 <h6 class=" note note-light" cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
                 <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
                   <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
@@ -195,7 +199,8 @@
               <div class="list-group-item list-group-item-light" *ngIf="mainList.delete.length < 1">
                 <p class="grey-text text-center">pusto</p>
               </div>
-              <div class="list-group-item-action list-group-item-danger" *ngFor="let item of mainList.delete; let i = index ">
+              <div class="list-group-item-action list-group-item-danger"
+                *ngFor="let item of mainList.delete; let i = index ">
                 <h6 class=" note note-danger" cdkDrag>{{ item.title.substring(0,50) | titlecase }}</h6>
                 <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
                   <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
@@ -212,7 +217,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="openModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+    <div class="modal fade" id="openModal" tabindex="5" role="dialog" aria-labelledby="exampleModalScrollableTitle"
       aria-hidden="true">
       <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
@@ -227,17 +232,45 @@
             <p class="text-justify text-muted">{{currentTask.note}}</p>
           </div>
           <div class="modal-footer">
-              <button class="btn btn-outline-warning waves-effect btn-sm">
-                  <i class="fas fa-edit"></i>
+            <!------  update task ----->
+            <div>
+              <button (click)="editTask($event, item)" class="btn btn-outline-warning waves-effect btn-sm"
+                title="Edytuj">
+                <i class="fas fa-edit"></i>
+                <div *ngIf="editState">
+                  <form (ngSubmit)="updateItem(currentTask)">
+                    <div class="md-form">
+                      <input type="text" class="form-control" mdbInput [(ngModel)]="currentTask.title" name="task">
+                      <small>Nowy Tytuł:</small>
+                    </div>
+                    <div class="col-12">
+                      <div class="md-form">
+                        <textarea class="md-textarea form-control" rows="5" type="text" length="160"
+                          mdbCharCounter mdbInput [(ngModel)]="currentTask.note" name="note"></textarea>
+                        <small>Nowa notatka:</small>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-outline-success btn-sm" data-dismiss="modal"
+                      title="Ok, zamknij"><i class="fas fa-check-circle mx-2"></i>
+                    </button>
+                  </form>
+                </div>
+              </button>
+            </div>
+            <!------  update ends ----->
+            <div *ngIf="!editState">
+              <span class="visible">
+                <button class="btn btn-outline-danger btn-sm" title="Usuń">
+                  <mdb-icon far icon="trash-alt"></mdb-icon>
                 </button>
-            <button class="btn btn-outline-danger btn-sm">
-              <mdb-icon far icon="trash-alt"></mdb-icon>
-            </button>
-            <button type="button" class="btn btn-outline-info btn-sm" data-dismiss="modal"><i
-                class="fas fa-check-circle mx-2"></i></button>
+                <button type="button" class="btn btn-outline-info btn-sm" data-dismiss="modal"><i
+                    class="fas fa-check-circle mx-2"></i>
+                </button>
+              </span>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <!-- Modal ends -->
-</div>
+  </div>

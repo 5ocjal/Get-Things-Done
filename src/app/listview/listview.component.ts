@@ -14,7 +14,9 @@ export class ListviewComponent implements OnInit {
 
   constructor(private taskService: TasksService) { }
 
-  currentTask = { title: '', note: '', dateAdded: '',  list: ''};
+  editState: boolean = false;
+  itemToEdit: Tasks;
+  currentTask = { id: '', title: '', note: '', dateAdded: '', list: '' };
 
   task: Tasks = {
     title: '',
@@ -44,7 +46,7 @@ export class ListviewComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<Tasks[]>) {
-    
+
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -55,8 +57,8 @@ export class ListviewComponent implements OnInit {
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
-        event.previousIndex, 
-        event.currentIndex, 
+        event.previousIndex,
+        event.currentIndex,
       );
 
     }
@@ -64,15 +66,18 @@ export class ListviewComponent implements OnInit {
     console.log(event.container.data[0].list);
     event.container.data[0].list = event.container.id;
     console.log(event.container.id)
-    
+
   }
 
   changeModal(item: any) {
     this.currentTask = item;
+    this.editState = false;
   }
 
-  changeList(item: any) {
-    this.currentTask.list = 'event.container.data';
+  editTask(event, item) {
+    this.editState = true;
+    this.itemToEdit = item;
+    console.log(this.editState);
   }
 
   onSubmit() {
