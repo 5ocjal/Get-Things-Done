@@ -11,6 +11,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { TasksService } from './services/tasks.service';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -20,6 +21,7 @@ import { TasksService } from './services/tasks.service';
     AppComponent,
     ListviewComponent,
     LoginComponent,
+    NavbarComponent,
 
   ],
 

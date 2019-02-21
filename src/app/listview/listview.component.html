@@ -4,7 +4,7 @@
       <div class="accordion" id="newNote">
         <div class="card">
           <h4 class="mb-0">
-            <button type="button" class="btn btn-outline-info waves-effect btn-block" data-toggle="collapse"
+            <button type="button" class="btn text-white green accent-3 btn-lg btn-block" data-toggle="collapse"
               data-target="#noteAdd" aria-expanded="true" aria-controls="collapseOne">
               Dodaj zadanie<mdb-icon fas icon="plus-circle" class="ml-1"></mdb-icon>
             </button>
@@ -53,7 +53,7 @@
 
 
         <div class="col-sm-3" borderColor="border-info">
-          <div class="card bg-info">
+          <div class="card cyan accent-4">
             <div class="card-header">
               <mdb-card-text class="text-white text-center">Zrób
                 <span [ngSwitch]="mainList.todo.length >0">
@@ -71,7 +71,7 @@
               <div class="list-group-item list-group-item-info" *ngIf="mainList.todo.length < 1">
                 <p class="grey-text text-center">pusto</p>
               </div>
-              <div class="list-group-item-action list-group-item-info" *ngFor="let item of todo; let i = index ">
+              <div class="list-group-item-action list-group-item-info" *ngFor="let item of mainList.todo; let i = index ">
                   <h6 class="note note-info" cdkDrag>{{ item.title.substring(0,20) | titlecase }}</h6>
                   <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
                     <small type="button" class="card-link text-justify"> {{ item.note.substring(0,100) }} ... </small>
@@ -113,7 +113,7 @@
         </div>
 
         <div class="col-sm-3" borderColor="border-success">
-          <div class="card bg-success">
+          <div class="card teal accent-4">
             <div class="card-header">
               <mdb-card-text class="text-white text-center">Zrobione
                 <span [ngSwitch]="mainList.done.length >0">
@@ -128,7 +128,7 @@
             </div>
             <cdk-drop class="listme list-group card-margin" #doneList [data]="mainList.done"
               [connectedTo]="[todoList, progressList, cancelledList, deleteList]" (dropped)="drop($event)">
-              <div class="list-group-item list-group-item-success" *ngIf="mainList.done.length < 1">
+              <div class="list-group-item list-group-item green accent-1" *ngIf="mainList.done.length < 1">
                 <p class="grey-text text-center">pusto</p>
               </div>
               <div class="list-group-item-action list-group-item-success" *ngFor="let item of mainList.done; let i = index ">
