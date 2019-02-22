@@ -51,7 +51,6 @@
     <div class="container p-4">
       <div class="row row-height">
 
-
         <div class="col-sm-3" borderColor="border-info">
           <div class="card cyan accent-4">
             <div class="card-header">
@@ -221,50 +220,60 @@
       aria-hidden="true">
       <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h6 class="blockquote bq-primary" id="exampleModalScrollableTitle">{{currentTask.title | titlecase}}</h6>
+
+          <div *ngIf="!editState" class="modal-header">
+            <h6 class="blockquote bq-primary" id="exampleModalScrollableTitle">{{currentTask.title | titlecase}}
+            </h6>
           </div>
-          <div class="modal-body">
+          <div *ngIf="!editState" class="modal-body">
             <small class="text-muted">Data utworzenia: {{currentTask.dateAdded | date:'dd/MM/yyyy HH:mm'}}</small>
           </div>
           <div class="modal-body">
-            <span class="h6 text-muted">Notatki:</span>
-            <p class="text-justify text-muted">{{currentTask.note}}</p>
+            <div *ngIf="!editState">
+              <span class="h6 text-muted">Notatki:</span>
+              <p class="text-justify text-muted">{{currentTask.note}}</p>
+            </div>
+
+            <!---   Edit modal -->
+            <div *ngIf="editState">
+              <form (ngSubmit)="updateItem(currentTask)">
+                <div class="col-12 text-left">
+                  <div class="md-form">
+                    <h6 class="blockquote bq-warning">Nowy tytuł:</h6>
+                    <input type="text" class="md-textarea form-control uk-text-left-small" mdbInput
+                      [(ngModel)]="currentTask.title" name="task">
+                  </div>
+                  <div class="md-form">
+                    <h6 class="blockquote bq-warning">Nowa notatka:</h6>
+                    <textarea class="md-textarea form-control uk-text-left-small" rows="4" type="text" length="160"
+                      mdbCharCounter mdbInput [(ngModel)]="currentTask.note" name="note"></textarea>
+                  </div>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="button" class="btn btn-outline-success btn-sm mr-2" data-dismiss="modal"
+                    title="Ok, zamknij"><i class="fas fa-check-circle mx-2"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+            <!---   Edit modal end -->
           </div>
           <div class="modal-footer">
             <!------  update task ----->
-            <div>
-              <button (click)="editTask($event, item)" class="btn btn-outline-warning waves-effect btn-sm"
-                title="Edytuj">
-                <i class="fas fa-edit"></i>
-                <div *ngIf="editState">
-                  <form (ngSubmit)="updateItem(currentTask)">
-                    <div class="md-form">
-                      <input type="text" class="form-control" mdbInput [(ngModel)]="currentTask.title" name="task">
-                      <small>Nowy Tytuł:</small>
-                    </div>
-                    <div class="col-12">
-                      <div class="md-form">
-                        <textarea class="md-textarea form-control" rows="5" type="text" length="160"
-                          mdbCharCounter mdbInput [(ngModel)]="currentTask.note" name="note"></textarea>
-                        <small>Nowa notatka:</small>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-outline-success btn-sm" data-dismiss="modal"
-                      title="Ok, zamknij"><i class="fas fa-check-circle mx-2"></i>
-                    </button>
-                  </form>
-                </div>
-              </button>
-            </div>
-            <!------  update ends ----->
+
             <div *ngIf="!editState">
               <span class="visible">
+                <button (click)="editTask($event, item)" class="btn btn-outline-warning waves-effect btn-sm"
+                  title="Edytuj">
+                  <i class="fas fa-edit"></i></button>
+
+                <!------  update ends ----->
+
                 <button class="btn btn-outline-danger btn-sm" title="Usuń">
                   <mdb-icon far icon="trash-alt"></mdb-icon>
                 </button>
-                <button type="button" class="btn btn-outline-info btn-sm" data-dismiss="modal"><i
-                    class="fas fa-check-circle mx-2"></i>
+                <button type="button" class="btn btn-outline-info btn-sm" data-dismiss="modal">
+                  <i class="fas fa-check-circle mx-2"></i>
                 </button>
               </span>
             </div>
