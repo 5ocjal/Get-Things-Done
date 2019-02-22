@@ -237,6 +237,9 @@
             <!---   Edit modal -->
             <div *ngIf="editState">
               <form (ngSubmit)="updateItem(currentTask)">
+                <div class="col-12 text-center">
+                  <small class="text-warning">Edycja zadania</small>
+                </div>
                 <div class="col-12 text-left">
                   <div class="md-form">
                     <h6 class="blockquote bq-warning">Nowy tytuł:</h6>
@@ -244,7 +247,7 @@
                       [(ngModel)]="currentTask.title" name="task">
                   </div>
                   <div class="md-form">
-                    <h6 class="blockquote bq-warning">Nowa notatka:</h6>
+                    <h6 class=" blockquote bq-warning">Nowa notatka:</h6>
                     <textarea class="md-textarea form-control uk-text-left-small" rows="4" type="text" length="160"
                       mdbCharCounter mdbInput [(ngModel)]="currentTask.note" name="note"></textarea>
                   </div>

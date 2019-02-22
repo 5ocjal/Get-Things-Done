@@ -32,7 +32,6 @@ export class TasksService {
     return this.tasks;
   }
 
-
   addItem(task: Tasks){
     this.tasksCollection.add(task);
   }
