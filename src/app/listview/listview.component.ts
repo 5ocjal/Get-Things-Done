@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Tasks } from '../tasks';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { TasksService } from '../services/tasks.service';
+import { modalConfigDefaults } from 'angular-bootstrap-md/lib/modals/modal.options';
 
 
 @Component({
@@ -62,31 +63,38 @@ export class ListviewComponent implements OnInit {
       );
 
     }
-    console.log(event.container)
-    console.log(event.container.data[0].list);
     event.container.data[0].list = event.container.id;
-    console.log(event.container.id)
+    this.updateTask(this.itemToEdit);
 
+  }
+
+  clearState(){
+    this.editState = false;
+    this.itemToEdit= null;
   }
 
   changeModal(item: any) {
     this.currentTask = item;
-    this.editState = false;
+    this.clearState();
   }
 
-  editTask(event, item) {
+  addTask() {
+    if (this.task.title != '' && this.task.list != '') {
+      this.taskService.addItem(this.task);
+      this.task.title = '';
+      this.task.note = '';
+    }
+  }
+
+  editTask(event, item: Tasks) {
     this.editState = true;
     this.itemToEdit = item;
     console.log(this.editState);
   }
 
-  onSubmit() {
-    if (this.task.title != '' && this.task.list != '') {
-      this.taskService.addItem(this.task);
-      this.task.title = '';
-      this.task.note = '';
-
-    }
+  updateTask(item: Tasks){
+    this.taskService.updateItem(item);
+    this.clearState();
   }
 
   clearList(list: string, todo: string) {

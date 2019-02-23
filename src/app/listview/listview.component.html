@@ -12,7 +12,7 @@
           <div id="noteAdd" class="collapse" aria-labelledby="headingOne" data-parent="#newNote">
             <div class="card-body">
               <div class="container p-2">
-                <form (ngSubmit)="onSubmit()" class="row">
+                <form (ngSubmit)="addTask()" class="row">
                   <div class="col-6">
                     <div class="md-form">
                       <input type="text" id="taskitem" class="form-control" mdbInput [(ngModel)]="task.title"
@@ -236,7 +236,7 @@
 
             <!---   Edit modal -->
             <div *ngIf="editState">
-              <form (ngSubmit)="updateItem(currentTask)">
+              <form (ngSubmit)="updateTask(currentTask)">
                 <div class="col-12 text-center">
                   <small class="text-warning">Edycja zadania</small>
                 </div>
@@ -253,7 +253,7 @@
                   </div>
                 </div>
                 <div class="col-12 text-center">
-                  <button type="button" class="btn btn-outline-success btn-sm mr-2" data-dismiss="modal"
+                  <button type="button" (click)="updateTask(currentTask)" class="btn btn-outline-success btn-sm mr-2" data-dismiss="modal"
                     title="Ok, zamknij"><i class="fas fa-check-circle mx-2"></i>
                   </button>
                 </div>
@@ -275,7 +275,7 @@
                 <button class="btn btn-outline-danger btn-sm" title="Usuń">
                   <mdb-icon far icon="trash-alt"></mdb-icon>
                 </button>
-                <button type="button" class="btn btn-outline-info btn-sm" data-dismiss="modal">
+                <button type="button" class="btn btn-outline-info btn-sm" title="Ok" data-dismiss="modal">
                   <i class="fas fa-check-circle mx-2"></i>
                 </button>
               </span>

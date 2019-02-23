@@ -32,13 +32,18 @@ export class TasksService {
     return this.tasks;
   }
 
-  addItem(task: Tasks){
-    this.tasksCollection.add(task);
+  addItem(item: Tasks){
+    this.tasksCollection.add(item);
   }
 
-  updateItem(task: Tasks){
-    this.tasksDocument = this.firestore.doc('tasks/${item.id}');
-    this.tasksDocument.update(task);
+  updateItem(item: Tasks){
+    this.tasksDocument = this.firestore.doc(`tasks/${item.id}`);
+    this.tasksDocument.update(item);
+  }
+
+  deleteItem(item: Tasks){
+    this.tasksDocument = this.firestore.doc(`task/${item.id}`);
+    this.tasksDocument.delete();
   }
 
 
