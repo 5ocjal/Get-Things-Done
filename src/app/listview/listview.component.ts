@@ -3,6 +3,8 @@ import { Tasks } from '../tasks';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { TasksService } from '../services/tasks.service';
 import { modalConfigDefaults } from 'angular-bootstrap-md/lib/modals/modal.options';
+import { TouchSequence } from 'selenium-webdriver';
+import { element } from '@angular/core/src/render3';
 
 
 @Component({
@@ -42,8 +44,10 @@ export class ListviewComponent implements OnInit {
       task.filter(item => item.list == 'done').map(item => this.mainList.done.push(item));
       task.filter(item => item.list == 'cancelled').map(item => this.mainList.cancelled.push(item));
       task.filter(item => item.list == 'delete').map(item => this.mainList.delete.push(item));
+   
+      })
 
-    });
+  
   }
 
   drop(event: CdkDragDrop<Tasks[]>) {
@@ -61,16 +65,13 @@ export class ListviewComponent implements OnInit {
         event.previousIndex,
         event.currentIndex,
       );
-
     }
-    event.container.data[0].list = event.container.id;
-    this.updateTask(this.itemToEdit);
-
+    this.updateList();
   }
 
-  clearState(){
+  clearState() {
     this.editState = false;
-    this.itemToEdit= null;
+    this.itemToEdit = null;
   }
 
   changeModal(item: any) {
@@ -92,13 +93,40 @@ export class ListviewComponent implements OnInit {
     console.log(this.editState);
   }
 
-  updateTask(item: Tasks){
+  updateTask(item: Tasks) {
     this.taskService.updateItem(item);
     this.clearState();
   }
 
+  updateList() {
+    for (let items in this.mainList) {
+      this.mainList.todo.forEach(element => {
+        element.list = 'todo';
+        this.updateTask(element);
+      });
+      this.mainList.progress.forEach(element =>{
+        element.list = 'progress';
+        this.updateTask(element);
+      });
+      this.mainList.done.forEach(element =>{
+        element.list = 'done';
+        this.updateTask(element);
+      });
+      this.mainList.delete.forEach(element =>{
+        element.list = 'delete';
+        this.updateTask(element);
+      });
+      this.mainList.cancelled.forEach(element =>{
+        element.list = 'cancelled';
+        this.updateTask(element);
+      })
+    };
+  }
+
   clearList(list: string, todo: string) {
-    this.mainList.delete.splice(0);
+    this.mainList.delete.forEach(element =>{
+      this.taskService.deleteItem(element);
+    })
   }
 
 
