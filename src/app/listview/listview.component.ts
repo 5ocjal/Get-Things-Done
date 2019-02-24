@@ -37,6 +37,8 @@ export class ListviewComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    console.log("ngOninit initialize")
     this.taskService.getTasks().subscribe(task => {
 
       task.filter(item => item.list == 'todo').map(item => this.mainList.todo.push(item));
@@ -44,14 +46,12 @@ export class ListviewComponent implements OnInit {
       task.filter(item => item.list == 'done').map(item => this.mainList.done.push(item));
       task.filter(item => item.list == 'cancelled').map(item => this.mainList.cancelled.push(item));
       task.filter(item => item.list == 'delete').map(item => this.mainList.delete.push(item));
-   
-      })
-
-  
+    })
   }
 
   drop(event: CdkDragDrop<Tasks[]>) {
 
+    console.log("drop function");
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -65,21 +65,29 @@ export class ListviewComponent implements OnInit {
         event.previousIndex,
         event.currentIndex,
       );
+      event.container.data.forEach(e =>{
+        e.list = event.container.id
+        this.updateTask(e);
+        console.log(e)
+      })
     }
-    this.updateList();
+  
   }
 
   clearState() {
+    console.log("clearState");
     this.editState = false;
     this.itemToEdit = null;
   }
 
   changeModal(item: any) {
+    console.log("changeModal");
     this.currentTask = item;
     this.clearState();
   }
 
   addTask() {
+    console.log("addTask");
     if (this.task.title != '' && this.task.list != '') {
       this.taskService.addItem(this.task);
       this.task.title = '';
@@ -88,44 +96,25 @@ export class ListviewComponent implements OnInit {
   }
 
   editTask(event, item: Tasks) {
+    console.log("editTask");
     this.editState = true;
     this.itemToEdit = item;
     console.log(this.editState);
   }
 
   updateTask(item: Tasks) {
+    console.log("updateTask");
     this.taskService.updateItem(item);
-    this.clearState();
+    console.log(item);
+    //this.clearState();
   }
 
-  updateList() {
-    for (let items in this.mainList) {
-      this.mainList.todo.forEach(element => {
-        element.list = 'todo';
-        this.updateTask(element);
-      });
-      this.mainList.progress.forEach(element =>{
-        element.list = 'progress';
-        this.updateTask(element);
-      });
-      this.mainList.done.forEach(element =>{
-        element.list = 'done';
-        this.updateTask(element);
-      });
-      this.mainList.delete.forEach(element =>{
-        element.list = 'delete';
-        this.updateTask(element);
-      });
-      this.mainList.cancelled.forEach(element =>{
-        element.list = 'cancelled';
-        this.updateTask(element);
-      })
-    };
-  }
 
-  clearList(list: string, todo: string) {
-    this.mainList.delete.forEach(element =>{
+  clearList() {
+    console.log("clearList");
+    this.mainList.delete.forEach(element => {
       this.taskService.deleteItem(element);
+
     })
   }
 

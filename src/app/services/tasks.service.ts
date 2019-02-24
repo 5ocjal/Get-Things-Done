@@ -43,6 +43,8 @@ export class TasksService {
 
   deleteItem(item: Tasks){
     this.tasksDocument = this.firestore.doc(`task/${item.id}`);
+    console.log("deleteItem");
+    console.log(item);
     this.tasksDocument.delete();
   }
 
