@@ -60,6 +60,8 @@ export class ListviewComponent implements OnInit {
 
   drop(event: CdkDragDrop<Tasks[]>) {
 
+
+
     console.log("drop function");
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -74,9 +76,10 @@ export class ListviewComponent implements OnInit {
         event.previousIndex,
         event.currentIndex,
       );
-      event.container.data.forEach(e =>{
-        e.list = event.container.id
-        this.updateTask(e);
+      event.container.data.forEach(element =>{
+        element.list = event.container.id;
+        this.updateTask(element);
+        
       })
     }
   }
