@@ -17,6 +17,7 @@ export class ListviewComponent implements OnInit {
 
   constructor(private taskService: TasksService) { }
 
+  listLoaded: boolean = false;
   editState: boolean = false;
   itemToEdit: Tasks;
   currentTask = { id: '', title: '', note: '', dateAdded: '', list: '' };
@@ -37,8 +38,14 @@ export class ListviewComponent implements OnInit {
   }
 
   ngOnInit() {
-
     console.log("ngOninit initialize")
+    if(!this.listLoaded){
+      this.loadAllList();
+    }
+  }
+
+  loadAllList(){
+    console.log("loadAllList")
     this.taskService.getTasks().subscribe(task => {
 
       task.filter(item => item.list == 'todo').map(item => this.mainList.todo.push(item));
@@ -46,7 +53,9 @@ export class ListviewComponent implements OnInit {
       task.filter(item => item.list == 'done').map(item => this.mainList.done.push(item));
       task.filter(item => item.list == 'cancelled').map(item => this.mainList.cancelled.push(item));
       task.filter(item => item.list == 'delete').map(item => this.mainList.delete.push(item));
+      this.listLoaded = true;
     })
+
   }
 
   drop(event: CdkDragDrop<Tasks[]>) {
@@ -68,7 +77,6 @@ export class ListviewComponent implements OnInit {
       event.container.data.forEach(e =>{
         e.list = event.container.id
         this.updateTask(e);
-        console.log(e)
       })
     }
   }
@@ -105,12 +113,6 @@ export class ListviewComponent implements OnInit {
     console.log("updateTask");
     this.taskService.updateItem(item);
     //this.clearState();
-
-    for(let item of this.mainList.todo){
-      console.log("todo iteration");
-      console.log(item);
-    }
-
   }
 
 
@@ -118,7 +120,6 @@ export class ListviewComponent implements OnInit {
     console.log("clearList");
     this.mainList.delete.forEach(element => {
       this.taskService.deleteItem(element);
-
     })
   }
 

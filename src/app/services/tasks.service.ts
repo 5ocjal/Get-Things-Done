@@ -4,6 +4,7 @@ import { Tasks } from '../tasks';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +25,6 @@ export class TasksService {
         return { id, ...data }
       }
     )
-
     ))
   }
 
@@ -32,16 +32,17 @@ export class TasksService {
     return this.tasks;
   }
 
-  addItem(item: Tasks){
+  addItem(item: Tasks) {
     this.tasksCollection.add(item);
   }
 
-  updateItem(item: Tasks){
+  updateItem(item: Tasks) {
     this.tasksDocument = this.firestore.doc(`tasks/${item.id}`);
+    console.log(`tasks/${item.id}`)
     this.tasksDocument.update(item);
   }
 
-  deleteItem(item: Tasks){
+  deleteItem(item: Tasks) {
     this.tasksDocument = this.firestore.doc(`task/${item.id}`);
     console.log("deleteItem");
     console.log(item);
