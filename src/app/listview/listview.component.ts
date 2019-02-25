@@ -71,7 +71,6 @@ export class ListviewComponent implements OnInit {
         console.log(e)
       })
     }
-  
   }
 
   clearState() {
@@ -105,8 +104,13 @@ export class ListviewComponent implements OnInit {
   updateTask(item: Tasks) {
     console.log("updateTask");
     this.taskService.updateItem(item);
-    console.log(item);
     //this.clearState();
+
+    for(let item of this.mainList.todo){
+      console.log("todo iteration");
+      console.log(item);
+    }
+
   }
 
 
