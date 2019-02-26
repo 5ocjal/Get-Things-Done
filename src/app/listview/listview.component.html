@@ -4,6 +4,9 @@
       <div class="accordion" id="newNote">
         <div class="card">
           <h4 class="mb-0">
+            <button (click)="loadAllList()" class="btn btn-info btn-sm btn-block">
+              Load Tasks<mdb-icon fas icon="trash-alt" class="ml-1"></mdb-icon>
+            </button>
             <button type="button" class="btn text-white green accent-3 btn-lg btn-block" data-toggle="collapse"
               data-target="#noteAdd" aria-expanded="true" aria-controls="collapseOne">
               Dodaj zadanie<mdb-icon fas icon="plus-circle" class="ml-1"></mdb-icon>
@@ -207,7 +210,7 @@
                 <p><small class="note-margin"> {{ item.dateAdded | date:'dd/MM/yyyy HH:mm' }}</small></p>
               </div>
             </cdk-drop>
-            <button (click)="clearList()" class="btn btn-red darken-3 btn-sm btn-block btn-red darken-3">
+            <button (click)="clearList()" class="btn btn-sm btn-block btn-red darken-3">
               Wyczyść<mdb-icon fas icon="trash-alt" class="ml-1"></mdb-icon>
             </button>
           </div>
@@ -253,8 +256,8 @@
                   </div>
                 </div>
                 <div class="col-12 text-center">
-                  <button type="button" (click)="updateTask(currentTask)" class="btn btn-outline-success btn-sm mr-2" data-dismiss="modal"
-                    title="Ok, zamknij"><i class="fas fa-check-circle mx-2"></i>
+                  <button type="button" (click)="updateTask(currentTask)" class="btn btn-outline-success btn-sm mr-2"
+                    data-dismiss="modal" title="Ok, zamknij"><i class="fas fa-check-circle mx-2"></i>
                   </button>
                 </div>
               </form>

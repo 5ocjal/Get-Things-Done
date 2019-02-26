@@ -10,7 +10,6 @@ import { map } from 'rxjs/operators';
 })
 export class TasksService {
 
-
   tasks: Observable<Tasks[]>;
   tasksDocument: AngularFirestoreDocument;
   tasksCollection: AngularFirestoreCollection<Tasks>
@@ -38,17 +37,12 @@ export class TasksService {
 
   updateItem(item: Tasks) {
     this.tasksDocument = this.firestore.doc(`tasks/${item.id}`);
-    console.log(`tasks/${item.id}`)
     this.tasksDocument.update(item);
-    
+    console.log("data updated")
   }
 
   deleteItem(item: Tasks) {
     this.tasksDocument = this.firestore.doc(`task/${item.id}`);
-    console.log("deleteItem");
-    console.log(item);
     this.tasksDocument.delete();
   }
-
-
 }
