@@ -6,8 +6,6 @@ import { TasksService } from '../services/tasks.service';
 import { element } from '@angular/core/src/render3';
 
 
-
-
 @Component({
   selector: 'app-listview',
   templateUrl: './listview.component.html',
@@ -39,12 +37,12 @@ export class ListviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    //  console.log("start of app with listLoaded set on: " + this.listLoaded)
+    console.log("start of app with listLoaded set on: " + this.listLoaded)
     console.log("ngOnInit initialize")
     console.log("listloaded: " + this.listLoaded);
-    //   if (!this.listLoaded) {
-    //   this.loadAllList();
-    //  }
+      if (!this.listLoaded) {
+       this.loadAllList();
+      }
   }
 
   loadAllList() {
@@ -69,7 +67,6 @@ export class ListviewComponent implements OnInit {
 
   drop(event: CdkDragDrop<Tasks[]>) {
 
-    itemToUpdate: event.container.data
 
     console.log("drop function");
     if (event.previousContainer === event.container) {
@@ -90,13 +87,6 @@ export class ListviewComponent implements OnInit {
         element.list = event.container.id;
         this.updateTask(element);
       })
-
-
-      /*   event.container.data.forEach(element => {
-           element.list = event.container.id;
-           this.updateTask(element); 
-   
-         }) */
     }
   }
 
@@ -141,6 +131,4 @@ export class ListviewComponent implements OnInit {
       this.taskService.deleteItem(element);
     })
   }
-
-
 }
