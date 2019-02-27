@@ -40,9 +40,9 @@ export class ListviewComponent implements OnInit {
     console.log("start of app with listLoaded set on: " + this.listLoaded)
     console.log("ngOnInit initialize")
     console.log("listloaded: " + this.listLoaded);
-      if (!this.listLoaded) {
-       this.loadAllList();
-      }
+    if (!this.listLoaded) {
+      this.loadAllList();
+    }
   }
 
   loadAllList() {
@@ -51,15 +51,13 @@ export class ListviewComponent implements OnInit {
 
       this.taskService.getTasks().subscribe(task => {
 
+        this.clearListState();
         task.filter(item => item.list == 'todo').map(item => this.mainList.todo.push(item));
         task.filter(item => item.list == 'progress').map(item => this.mainList.progress.push(item));
         task.filter(item => item.list == 'done').map(item => this.mainList.done.push(item));
         task.filter(item => item.list == 'cancelled').map(item => this.mainList.cancelled.push(item));
         task.filter(item => item.list == 'delete').map(item => this.mainList.delete.push(item));
         this.listLoaded = true;
-        console.log("loadAllList with listLoaded set on: " + this.listLoaded)
-        console.log("task loaded by loadAllList()");
-        console.log("listloaded: " + this.listLoaded);
       })
     }
   }
@@ -67,8 +65,6 @@ export class ListviewComponent implements OnInit {
 
   drop(event: CdkDragDrop<Tasks[]>) {
 
-
-    console.log("drop function");
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -90,20 +86,26 @@ export class ListviewComponent implements OnInit {
     }
   }
 
-  clearState() {
-    console.log("clearState");
+  clearEditState() {
     this.editState = false;
     this.itemToEdit = null;
+
+  }
+
+  clearListState() {
+    this.mainList.todo = [];
+    this.mainList.progress = [];
+    this.mainList.done = [];
+    this.mainList.cancelled = [];
+    this.mainList.delete = [];
   }
 
   changeModal(item: any) {
-    console.log("changeModal");
     this.currentTask = item;
-    this.clearState();
+    this.clearEditState();
   }
 
   addTask() {
-    console.log("addTask");
     if (this.task.title != '' && this.task.list != '') {
       this.taskService.addItem(this.task);
       this.task.title = '';
@@ -112,21 +114,15 @@ export class ListviewComponent implements OnInit {
   }
 
   editTask(event, item: Tasks) {
-    console.log("editTask");
     this.editState = true;
     this.itemToEdit = item;
-    console.log(this.editState);
   }
 
   updateTask(item: Tasks) {
-    console.log("updateTask()");
     this.taskService.updateItem(item);
-    //this.clearState();
+    this.clearEditState();
   }
-
-
   clearList() {
-    console.log("clearList");
     this.mainList.delete.forEach(element => {
       this.taskService.deleteItem(element);
     })

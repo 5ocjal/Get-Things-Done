@@ -38,7 +38,6 @@ export class TasksService {
   updateItem(item: Tasks) {
     this.tasksDocument = this.firestore.doc(`tasks/${item.id}`);
     this.tasksDocument.update(item);
-    console.log("data updated")
   }
 
   deleteItem(item: Tasks) {
