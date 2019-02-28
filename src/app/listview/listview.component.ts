@@ -118,6 +118,7 @@ export class ListviewComponent implements OnInit {
     this.itemToEdit = item;
   }
 
+
   updateTask(item: Tasks) {
     this.taskService.updateItem(item);
     this.clearEditState();

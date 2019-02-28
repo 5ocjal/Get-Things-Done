@@ -13,6 +13,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { TasksService } from './services/tasks.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 
@@ -34,6 +35,7 @@ import { FooterComponent } from './footer/footer.component';
     MDBBootstrapModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase, 'get-things-done'),
     AngularFirestoreModule,
+    AppRoutingModule,
 
   ],
 
