@@ -9,11 +9,14 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { LoginComponent } from './login/login.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { TasksService } from './services/tasks.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
+import { } from './services/auth.guard';
 
 
 
@@ -35,7 +38,10 @@ import { AppRoutingModule } from './app-routing.module';
     MDBBootstrapModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase, 'get-things-done'),
     AngularFirestoreModule,
+    AngularFireAuth,
+    AngularFireAuthModule,
     AppRoutingModule,
+    RouterModule,
 
   ],
 

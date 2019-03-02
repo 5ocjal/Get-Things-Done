@@ -9,7 +9,7 @@ export const environment = {
     authDomain: "get-things-done-v1-2.firebaseapp.com",
     databaseURL: "https://get-things-done-v1-2.firebaseio.com",
     projectId: "get-things-done-v1-2",
-    storageBucket: "",
+    storageBucket: "get-things-done-v1-2.appspot.com",
     messagingSenderId: "592293259761"
   }
 

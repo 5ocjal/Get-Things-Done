@@ -4,7 +4,7 @@
       <div class="accordion" id="newNote">
         <div class="card">
           <h4 class="mb-0">
-            <button type="button" class="btn text-white green accent-3 btn-lg btn-block" data-toggle="collapse"
+            <button type="button" class="btn text-white cyan darken-3 btn-lg btn-block" data-toggle="collapse"
               data-target="#noteAdd" aria-expanded="true" aria-controls="collapseOne">
               Dodaj zadanie<mdb-icon fas icon="plus-circle" class="ml-1"></mdb-icon>
             </button>
@@ -180,7 +180,7 @@
       <div class="row">
         <div class="col">
 
-          <div class="card bg red darken-3">
+          <div class="card bg red accent-4">
             <div class="card-header">
               <mdb-card-text class="text-white text-center">Usunięte
                 <span [ngSwitch]="mainList.delete.length >0">
@@ -198,7 +198,7 @@
               <div class="list-group-item list-group-item-light" *ngIf="mainList.delete.length < 1">
                 <p class="grey-text text-center">pusto</p>
               </div>
-              <div class="list-group-item-action list-group-item-danger"
+              <div class="list-group-item-action list-group-item red lighten-4"
                 *ngFor="let item of mainList.delete; let i = index ">
                 <h6 class=" note note-danger" cdkDrag>{{ item.title.substring(0,50) | titlecase }}</h6>
                 <article (click)="changeModal(item)" data-toggle="modal" data-target="#openModal" class="note-margin">
@@ -253,7 +253,7 @@
                   </div>
                 </div>
                 <div class="col-12 text-center">
-                  <button type="button" (click)="updateTask(currentTask)" class="btn btn-outline-success btn-sm mr-2"
+                  <button type="button" (click)="updateTask(currentTask)" class="btn btn-outline-default btn-sm mr-2"
                     data-dismiss="modal" title="Ok, zamknij"><i class="fas fa-check-circle mx-2"></i>
                   </button>
                 </div>
