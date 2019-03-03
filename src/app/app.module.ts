@@ -38,7 +38,6 @@ import { } from './services/auth.guard';
     MDBBootstrapModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase, 'get-things-done'),
     AngularFirestoreModule,
-    AngularFireAuth,
     AngularFireAuthModule,
     AppRoutingModule,
     RouterModule,
