@@ -194,7 +194,7 @@
               </mdb-card-text>
             </div>
             <cdk-drop id="delete" class="listme list-group card-margin" #deleteList [data]="mainList.delete"
-              [connectedTo]="[todoList, progressList, doneList, canceledList]" (dropped)="drop($event)">
+              [connectedTo]="[todoList, progressList, doneList, cancelledList]" (dropped)="drop($event)">
               <div class="list-group-item list-group-item-light" *ngIf="mainList.delete.length < 1">
                 <p class="grey-text text-center">pusto</p>
               </div>
